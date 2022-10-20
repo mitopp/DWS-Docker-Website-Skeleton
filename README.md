@@ -1,1 +1,30 @@
 # DWS - Docker Website Skeleton
+
+## Getting started
+
+1. If not already done, [install Docker Compose](https://docs.docker.com/compose/install/) (v2.10+)
+2. Run `docker compose build --pull --no-cache` to build fresh images
+3. Run `docker compose up` (the logs will be displayed in the current shell)
+4. Open `https://localhost` in your favorite web browser
+   and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334)
+5. Run `docker compose down --remove-orphans` to stop the Docker containers.
+
+# Features
+
+# Requirements
+
+* [Docker](https://docs.docker.com/get-docker/) v20.10.17 or higher
+* [Docker Compose](https://docs.docker.com/compose/install/) v2.10.2 or higher
+
+# Documentation
+
+* [Build options](docs/build-options.md)
+* [Troubleshooting](docs/troubleshooting.md)
+
+# License
+
+Docker Website Skeleton is available under the [MIT License](LICENSE.md).
+
+# Credits
+
+Created by Michael Topp, co-maintained by Maik Caspar and Björn Grzywatz.
