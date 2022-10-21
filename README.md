@@ -1,5 +1,7 @@
 # DWS - Docker Website Skeleton
 
+A Docker-based installer and runtime for website applications.
+
 ## Getting started
 
 1. If not already done, [install Docker Compose](https://docs.docker.com/compose/install/) (v2.10+)
@@ -10,6 +12,8 @@
 5. Run `docker compose down --remove-orphans` to stop the Docker containers.
 
 # Features
+
+* *TBD*
 
 # Requirements
 
@@ -27,4 +31,6 @@ Docker Website Skeleton is available under the [MIT License](LICENSE.md).
 
 # Credits
 
-Created by Michael Topp, co-maintained by Maik Caspar and Björn Grzywatz.
+Created by Michael Topp, co-maintained by Maik Caspar and Björn Grzywatz. Inspired
+by [Kévin Dunglas](https://github.com/dunglas/symfony-docker)
+and [Gary Clarke](https://github.com/GaryClarke/nginx-php7.4-mysql8-node-docker-network).
