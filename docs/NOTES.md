@@ -4,24 +4,41 @@
 
 A Docker-based installer and runtime for website applications.
 
-## Current situation
+## IST Situation
 
-* Der Initialaufwand für Docker Web Projekte ist für alle Entwickler ähnlich groß. Dabei gilt es den kleinsten
-  gemeinsamen Nenner zu finden und diese Aufwände entsprechend zu reduzieren.
+* Der Initialaufwand für Docker Web Projekte ist für alle Entwickler ähnlich groß. Dabei ist die Arbeit im Vorfeld
+  nahezu immer identisch.
 
-## Requirements
+## SOLL Situation
 
-### Must Haves
+* Schaffen einer Vorlage für Web-Applikationen, mit der Entwickler ohne großen Aufwand Projekte initialisieren können.
+* Akzeptanz für die Nutzung von Docker basierenden Applikationen erhöhen.
+
+## Gegenüberstellung
+
+| Pro                                                                                                                               | Contra                                     |
+|-----------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| - Initialaufwand für Projekte sind geringer                                                                                       | - Initial Aufwand für die Vorlage ist groß |
+| - Akzeptanz für Docker basierende Nutzung wird erhöht im Team                                                                     | - Erheblicher Abstimmungsaufwand im Team   |
+| - Einheitliche Vorlage, welche von jedem im Team administriert werden kann                                                        |                                            |
+| - Laufende Projekte können jederzeit von anderen Kollegen übernommen werden, <br/>ohne dass es lange Einarbeitungszeiten benötigt |                                            |
+
+## Anforderungen
+
+### Must Have
 
 * Minimalprinzip, welches bei Bedarf problemlos erweitert werden kann.
 * Auch für bestehende Projekte nutzbar.
+* Erweiterte Konfiguration von Netzwerk und Containern.
 
-### Should Haves
+### Should Have
 
 * Einfache und nachvollziehbare Konfiguration.
 * Umfangreich dokumentiert.
+* Zentrales Logging der Container.
+* Überwachung der einzelnen Container. (Healthcheck)
 
-### Nice to Haves
+### Nice to Have
 
 * Nutzung von Best Practices.
 
