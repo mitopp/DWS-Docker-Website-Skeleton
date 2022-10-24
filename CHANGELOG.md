@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PHP FPM configuration
 - PHP container
 - `ENV` variables for Nginx host configuration
+- Helpful commands
 
 ### Changed
 
