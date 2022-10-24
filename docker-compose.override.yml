@@ -1,6 +1,6 @@
 # Diese Datei erweitert oder überschreibt  die `docker-compose.yml` für die Entwicklung.
 
-version: "3"
+version: "3.4"
 
 services:
 
@@ -12,14 +12,19 @@ services:
         target: /etc/nginx/templates/default.conf.template
 
   php:
+    build:
+      target: dev
+    environment:
+      # See https://xdebug.org/docs/all_settings#mode
+      # The mode is disabled by default by performance reasons.
+      # Enable it on demand by `.env`
+      XDEBUG_MODE: "${XDEBUG_MODE:-off}"
+    extra_hosts:
+      # Ensure that host.docker.internal is correctly defined on Linux
+      - host.docker.internal:host-gateway
+    image: capita/${CONTAINER_PREFIX:-dws}-php:dev-master
     volumes:
       # Die Applikationsdateien werden als Share in den Container gemounted.
       - type: bind
         source: ./app
         target: ${COMPOSE_DOCUMENT_ROOT:-/srv/app}
-
-      # Die erweiterte Konfiguration via INI Datei
-      - type: bind
-        source: ./docker/php/fpm/conf.d/php-development.ini
-        target: /usr/local/etc/php/conf.d/docker-php-development.ini
-        read_only: true
