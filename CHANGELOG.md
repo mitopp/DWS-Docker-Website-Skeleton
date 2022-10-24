@@ -13,9 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Template for Nginx Host
 - PHP.ini configuration
 - PHP FPM configuration
-- PHP container 
+- PHP container
+- `ENV` variables for Nginx host configuration
 
 ### Changed
+
 
 ### Deprecated
 
