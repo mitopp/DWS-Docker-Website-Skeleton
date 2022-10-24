@@ -19,12 +19,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- Volume for the `php_socket` in `web` and `php` service ist configured as `bind`. Must be a volume and not a bind. #1
 
 ### Security
 

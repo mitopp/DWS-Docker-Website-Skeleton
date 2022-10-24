@@ -26,7 +26,7 @@ services:
     # The policy restarts a container irrespective of the exit code but will stop restarting when the service is stopped or removed.
     restart: unless-stopped
     volumes:
-      - type: bind
+      - type: volume
         source: php_socket
         target: /var/run/php
       - type: bind
@@ -42,7 +42,7 @@ services:
     # The policy restarts a container irrespective of the exit code but will stop restarting when the service is stopped or removed.
     restart: unless-stopped
     volumes:
-      - type: bind
+      - type: volume
         source: php_socket
         target: /var/run/php
       - type: bind
