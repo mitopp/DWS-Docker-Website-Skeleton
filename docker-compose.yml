@@ -11,6 +11,11 @@ services:
   # Die Benennung des Containers erfolgt mit entsprechendem Prefix.
   web:
     container_name: ${CONTAINER_PREFIX:-dws}-nginx
+    depends_on:
+      - php
+    environment:
+      - DOCUMENT_ROOT=${COMPOSE_DOCUMENT_ROOT:-/srv/app}
+      - PUBLIC_ROOT=${COMPOSE_PUBLIC_ROOT:-/}
     image: nginx:${VERSION_NGINX:-1.23.1}-alpine
     networks:
       - default
@@ -20,6 +25,33 @@ services:
         protocol: tcp
     # The policy restarts a container irrespective of the exit code but will stop restarting when the service is stopped or removed.
     restart: unless-stopped
+    volumes:
+      - type: bind
+        source: php_socket
+        target: /var/run/php
+      - type: bind
+        source: ./app
+        target: ${COMPOSE_DOCUMENT_ROOT:-/srv/app}
+        read_only: true
+
+  php:
+    container_name: ${CONTAINER_PREFIX:-dws}-php
+    image: php:${VERSION_PHP:-8.1.11}-fpm-alpine
+    networks:
+      - default
+    # The policy restarts a container irrespective of the exit code but will stop restarting when the service is stopped or removed.
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: php_socket
+        target: /var/run/php
+      - type: bind
+        source: ./docker/php/fpm/php-fpm.conf
+        target: /usr/local/etc/php-fpm.d/zz-docker.conf
+      - type: bind
+        source: ./docker/php/fpm/conf.d/php.ini
+        target: /usr/local/etc/php/conf.d/docker-php.ini
+        read_only: true
 
 networks:
 
@@ -30,3 +62,8 @@ networks:
       config:
         - subnet: ${NETWORK_IP_V4_SUBNET:-10.0.0.0/24}
           gateway: ${NETWORK_IP_V6_SUBNET:-10.0.0.1}
+
+volumes:
+
+  # Dieses Volume dient der Verbindung vpn Webserver und PHP-FPM via socket.
+  php_socket:
