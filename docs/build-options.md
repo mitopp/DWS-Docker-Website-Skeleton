@@ -21,7 +21,7 @@ done using the `--env-file` option](https://docs.docker.com/compose/environment-
 
 ### Advanced usage
 
-Durch die Verwendung von Standardwerten können auch nur einzelne Variablen definiert/überschrieben werden. 
+Durch die Verwendung von Standardwerten können auch nur einzelne Variablen definiert/überschrieben werden.
 
 Beispiel:
 
@@ -56,6 +56,8 @@ $ VARIABLE=value docker compose command
 |----------------------------|---------------|----------------------------------------------------------------------------------------------------------------|
 | `COMPOSE_PROJECT_NAME`     | `null`        | Sets the project name. This value is prepended along with the service name to the container’s name on startup. |
 | `COMPOSE_CONTAINER_PREFIX` | `dws`         | Dieses Prefix wird jedem Container-Namen vorangestellt.                                                        |
+| `COMPOSE_DOCUMENT_ROOT`    | `/srv/app`    | Root Verzeichnis für den Webserver.                                                                            |
+| `COMPOSE_PUBLIC_ROOT`      | `/`           | Öffentliches Verzeichnis für den Webserver.                                                                    |
 
 ### Network
 
@@ -72,6 +74,7 @@ $ VARIABLE=value docker compose command
 
 ### Versions
 
-| Variable                | Default value | Description                                    |
-|-------------------------|---------------|------------------------------------------------|
-| `VERSION_NGINX`         | `1.23.1`      | Diese Version des Webservers wird installiert. |
+| Variable        | Default value | Description                                    |
+|-----------------|---------------|------------------------------------------------|
+| `VERSION_NGINX` | `1.23.1`      | Diese Version des Webservers wird installiert. |
+| `VERSION_PHP`   | `8.1.11`      | Diese Version des PHP FPM wird installiert.    |

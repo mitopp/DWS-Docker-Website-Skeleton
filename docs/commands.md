@@ -14,3 +14,13 @@ $ docker compose --file docker-compose.rev.yml --env-file .env.rev convert
 # Production environment
 $ docker compose --file docker-compose.prod.yml --env-file .env.prod convert
 ```
+
+## Other
+
+```shell
+# Test the PHP-FPM configuration
+$ docker exec -it dws-php php-fpm -tt
+
+# Test the Nginx configuration
+$ docker exec -it dws-nginx nginx -T
+```

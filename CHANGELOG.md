@@ -9,11 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Compose configuration for webserver (nginx)
-- Configuration template as `.env.dist` 
-- Documentation
+- Compose file for development environment
+- Template for Nginx Host
+- PHP.ini configuration
+- PHP FPM configuration
+- PHP container
+- `ENV` variables for Nginx host configuration
+- Helpful commands
 
 ### Changed
+
 
 ### Deprecated
 
@@ -23,4 +28,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
-## [x.y.z] - YYYY-MM-DD
+## [0.1.0] - 2022-10-24
+
+### Added
+
+- Compose configuration for webserver (nginx)
+- Configuration template as `.env.dist`
+- Documentation
