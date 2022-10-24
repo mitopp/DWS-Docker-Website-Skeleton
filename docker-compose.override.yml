@@ -1,0 +1,25 @@
+# Diese Datei erweitert oder überschreibt  die `docker-compose.yml` für die Entwicklung.
+
+version: "3"
+
+services:
+
+  web:
+    volumes:
+      # Dieses Host Template wird nur für die Entwicklung auf `localhost` genutzt.
+      - type: bind
+        source: ./docker/web/nginx/templates/localhost.conf.template
+        target: /etc/nginx/templates/default.conf.template
+
+  php:
+    volumes:
+      # Die Applikationsdateien werden als Share in den Container gemounted.
+      - type: bind
+        source: ./app
+        target: ${COMPOSE_DOCUMENT_ROOT:-/srv/app}
+
+      # Die erweiterte Konfiguration via INI Datei
+      - type: bind
+        source: ./docker/php/fpm/conf.d/php-development.ini
+        target: /usr/local/etc/php/conf.d/docker-php-development.ini
+        read_only: true
