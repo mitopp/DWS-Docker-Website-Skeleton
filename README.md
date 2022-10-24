@@ -23,6 +23,7 @@ A Docker-based installer and runtime for website applications.
 # Documentation
 
 * [Build options](docs/build-options.md)
+* [Helpful commands](docs/commands.md)
 * [Troubleshooting](docs/troubleshooting.md)
 
 # License

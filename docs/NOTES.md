@@ -27,9 +27,11 @@ A Docker-based installer and runtime for website applications.
 
 ### Must Have
 
-* Minimalprinzip, welches bei Bedarf problemlos erweitert werden kann.
+* Minimalprinzip, nur 2 Services
 * Auch für bestehende Projekte nutzbar.
 * Erweiterte Konfiguration von Netzwerk und Containern.
+* Mindestens 3 Stages (Development, Preview und Production)
+* CI/CD ready
 
 ### Should Have
 
@@ -37,31 +39,16 @@ A Docker-based installer and runtime for website applications.
 * Umfangreich dokumentiert.
 * Zentrales Logging der Container.
 * Überwachung der einzelnen Container. (Healthcheck)
+* Einfach erweiterbar um zusätzliche Services wie Datenbank, Cache usw.
+* Webserver SSL als Standard
+* Erweiterungen für PHP können einfach installiert werden. (APCU, OPCache, usw.)
 
 ### Nice to Have
 
 * Nutzung von Best Practices.
+* Zusätzliche Tools wie Xdebug, PHPStan, CS-Fixer usw.
 
 ## Links
 
 * [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
 * [Docker development best practices](https://docs.docker.com/develop/dev-best-practices/)
-
----
-
-* Multi-staging and continous integration ready
-* Using with existing projects
-* Slim and minimal. Just 2 services (PHP FPM and Nginx)
-* Extendable with extra services like Database, Cache etc.
-* Super-readable Documentation
-* Extendable services
-    * Optional PHP Extensions like APCU, OPCache etc.
-* Easy configuration with build options
-    * Configurable network
-    * Configurable versions for Nginx and PHP
-    * Webserver
-        * Automatic HTTPS
-    * PHP FPM
-        * Native XDebug integration
-
----
