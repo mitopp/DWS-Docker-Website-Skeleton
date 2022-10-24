@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Compose file for development environment
 - Template for Nginx Host
+- PHP.ini configuration
 
 ### Changed
 
