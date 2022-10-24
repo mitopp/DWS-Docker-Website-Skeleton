@@ -1,0 +1,32 @@
+# Diese Compose Datei dient nur der Definierung der einzelnen Services, Netzwerken und Volumens.
+# Die Standard Konfiguration wird durch Compose Dateien wie `docker-compose.override.yml`, `docker-compose.preview.yml`
+# und `docker-compose.prod.yml` erweitert und geändert.
+
+version: "3"
+
+services:
+
+  # Webserver als Alias für verschiedene images wie Apache, Nginx oder Ähnliche.
+  # Dabei ist der Hostname `web` immer fest und kann in der erweiterten Konfiguration genutzt werden.
+  # Die Benennung des Containers erfolgt mit entsprechendem Prefix.
+  web:
+    container_name: ${CONTAINER_PREFIX:-dws}-nginx
+    image: nginx:${VERSION_NGINX:-1.23.1}-alpine
+    networks:
+      - default
+    ports:
+      - target: 80
+        published: ${PORT_HTTP:-80}
+        protocol: tcp
+    # The policy restarts a container irrespective of the exit code but will stop restarting when the service is stopped or removed.
+    restart: unless-stopped
+
+networks:
+
+  # Das Standard Netzwerk kann durch ENV-Variablen konfiguriert werden.
+  # Auch eine Erweiterung für IP_V6 ist möglich.
+  default:
+    ipam:
+      config:
+        - subnet: ${NETWORK_IP_V4_SUBNET:-10.0.0.0/24}
+          gateway: ${NETWORK_IP_V6_SUBNET:-10.0.0.1}
