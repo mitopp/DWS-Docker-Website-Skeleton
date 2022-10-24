@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PHP container
 - `ENV` variables for Nginx host configuration
 - Helpful commands
+- Optional `ENV` variable to configure Xdebug in development PHP image.
 
 ### Changed
 

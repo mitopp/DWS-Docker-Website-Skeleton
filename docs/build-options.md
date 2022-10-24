@@ -78,3 +78,9 @@ $ VARIABLE=value docker compose command
 |-----------------|---------------|------------------------------------------------|
 | `VERSION_NGINX` | `1.23.1`      | Diese Version des Webservers wird installiert. |
 | `VERSION_PHP`   | `8.1.11`      | Diese Version des PHP FPM wird installiert.    |
+
+### Other
+
+| Variable      | Default value | Description                                       |
+|---------------|---------------|---------------------------------------------------|
+| `XDEBUG_MODE` | `off`         | Konfiguriert den Xdebug Modus. (Development only) |
