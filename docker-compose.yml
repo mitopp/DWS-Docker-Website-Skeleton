@@ -2,7 +2,7 @@
 # Die Standard Konfiguration wird durch Compose Dateien wie `docker-compose.override.yml`, `docker-compose.preview.yml`
 # und `docker-compose.prod.yml` erweitert und geändert.
 
-version: "3"
+version: "3.4"
 
 services:
 
@@ -33,10 +33,17 @@ services:
         source: ./app
         target: ${COMPOSE_DOCUMENT_ROOT:-/srv/app}
         read_only: true
+    working_dir: /etc/nginx
 
   php:
+    build:
+      args:
+        - PHP_VERSION=${PHP_VERSION:-8.1.11}
+      context: .
+      target: prod
+      dockerfile: ./docker/php/fpm/Dockerfile
     container_name: ${CONTAINER_PREFIX:-dws}-php
-    image: php:${VERSION_PHP:-8.1.11}-fpm-alpine
+    image: capita/${CONTAINER_PREFIX:-dws}-php:latest
     networks:
       - default
     # The policy restarts a container irrespective of the exit code but will stop restarting when the service is stopped or removed.
@@ -45,13 +52,7 @@ services:
       - type: volume
         source: php_socket
         target: /var/run/php
-      - type: bind
-        source: ./docker/php/fpm/php-fpm.conf
-        target: /usr/local/etc/php-fpm.d/zz-docker.conf
-      - type: bind
-        source: ./docker/php/fpm/conf.d/php.ini
-        target: /usr/local/etc/php/conf.d/docker-php.ini
-        read_only: true
+    working_dir: ${COMPOSE_DOCUMENT_ROOT:-/srv/app}
 
 networks:
 
