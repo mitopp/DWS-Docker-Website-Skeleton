@@ -29,6 +29,9 @@ services:
       - target: 80
         published: ${PORT_HTTP:-80}
         protocol: tcp
+      - target: 443
+        published: ${PORT_HTTPS:-443}
+        protocol: tcp
     # The policy restarts a container irrespective of the exit code but will stop restarting when the service is stopped or removed.
     restart: unless-stopped
     volumes:

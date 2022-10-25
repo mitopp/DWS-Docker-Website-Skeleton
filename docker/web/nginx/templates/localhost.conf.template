@@ -1,11 +1,15 @@
 server {
-    listen          80;
-    listen          [::]:80;
+    listen          443 ssl http2;
+    listen          [::]:443 ssl http2;
 
     server_name     localhost;
 
     set             $base ${DOCUMENT_ROOT};
     root            $base${PUBLIC_ROOT};
+
+    # SSL
+    ssl_certificate         /etc/ssl/localhost.crt;
+    ssl_certificate_key     /etc/ssl/localhost.key;
 
     # security headers
     add_header X-XSS-Protection          "1; mode=block" always;
@@ -93,5 +97,17 @@ server {
     # this prevents access to other php files you don't want to be accessible.
     location ~ \.php$ {
         return 404;
+    }
+}
+
+# HTTP redirect
+server {
+    listen          80;
+    listen          [::]:80;
+
+    server_name     localhost;
+
+    location / {
+        return 301 https://localhost$request_uri;
     }
 }

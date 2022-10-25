@@ -35,19 +35,19 @@ COPY docker/php/fpm/conf.d/php.ini /usr/local/etc/php/conf.d/docker-php.ini
 # conf handling
 COPY docker/php/fpm/php-fpm.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 
+# entry point
+#COPY docker/php/fpm/bin/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+#RUN chmod +x /usr/local/bin/docker-entrypoint
+#
+#ENTRYPOINT ["docker-entrypoint"]
+#CMD ["php-fpm"]
+
 # composer
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# entry point
-COPY  docker/php/fpm/bin/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
-RUN chmod +x /usr/local/bin/docker-entrypoint
-
-ENTRYPOINT ["docker-entrypoint"]
-CMD ["php-fpm"]
 
 
 
