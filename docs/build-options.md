@@ -68,9 +68,10 @@ $ VARIABLE=value docker compose command
 
 ### Ports
 
-| Variable                | Default value | Description                                     |
-|-------------------------|---------------|-------------------------------------------------|
-| `PORT_HTTP`             | `80`          | Dieser Port wird beim Webserver veröffentlicht. |
+| Variable     | Default value | Description                                     |
+|--------------|---------------|-------------------------------------------------|
+| `PORT_HTTP`  | `80`          | Dieser Port wird beim Webserver veröffentlicht. |
+| `PORT_HTTPS` | `443`         | Dieser Port wird beim Webserver veröffentlicht. |
 
 ### Versions
 

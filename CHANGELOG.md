@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - PHP: Advanced configuration with `Dockerfile`.
 - Nginx: Advanced configuration with `Dockerfile`.
+- Nginx: SSL configuration for development.
 
 ### Deprecated
 

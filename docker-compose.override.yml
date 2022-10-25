@@ -8,6 +8,10 @@ services:
     build:
       target: dev
     image: ${CONTAINER_PREFIX:-dws}-nginx:dev-master
+    volumes:
+      - type: bind
+        source: ./docker/web/nginx/ssl
+        target: /etc/ssl
 
   php:
     build:
