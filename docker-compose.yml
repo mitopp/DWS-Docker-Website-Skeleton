@@ -2,7 +2,7 @@
 # Die Standard Konfiguration wird durch Compose Dateien wie `docker-compose.override.yml`, `docker-compose.preview.yml`
 # und `docker-compose.prod.yml` erweitert und geändert.
 
-version: "3.4"
+version: "3.9"
 
 services:
 
@@ -18,7 +18,8 @@ services:
       target: prod
     container_name: ${CONTAINER_PREFIX:-dws}-nginx
     depends_on:
-      - php
+      php:
+        condition: service_healthy
     environment:
       - DOCUMENT_ROOT=${COMPOSE_DOCUMENT_ROOT:-/srv/app}
       - PUBLIC_ROOT=${COMPOSE_PUBLIC_ROOT:-/}
