@@ -42,6 +42,13 @@ ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# entry point
+COPY  docker/php/fpm/bin/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+RUN chmod +x /usr/local/bin/docker-entrypoint
+
+ENTRYPOINT ["docker-entrypoint"]
+CMD ["php-fpm"]
+
 
 
 
