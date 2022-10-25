@@ -5,11 +5,9 @@ version: "3.4"
 services:
 
   web:
-    volumes:
-      # Dieses Host Template wird nur für die Entwicklung auf `localhost` genutzt.
-      - type: bind
-        source: ./docker/web/nginx/templates/localhost.conf.template
-        target: /etc/nginx/templates/default.conf.template
+    build:
+      target: dev
+    image: ${CONTAINER_PREFIX:-dws}-nginx:dev-master
 
   php:
     build:
