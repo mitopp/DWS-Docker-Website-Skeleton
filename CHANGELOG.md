@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - Image names and tags
+- Custom entrypoint for PHP container
 
 ### Fixed
 
