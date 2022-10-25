@@ -22,7 +22,7 @@ services:
     extra_hosts:
       # Ensure that host.docker.internal is correctly defined on Linux
       - host.docker.internal:host-gateway
-#    image: capita/${CONTAINER_PREFIX:-dws}-php:dev-master
+    image: ${CONTAINER_PREFIX:-dws}-php:dev-master
     volumes:
       # Die Applikationsdateien werden als Share in den Container gemounted.
       - type: bind
