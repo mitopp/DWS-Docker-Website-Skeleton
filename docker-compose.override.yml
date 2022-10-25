@@ -1,6 +1,6 @@
 # Diese Datei erweitert oder überschreibt  die `docker-compose.yml` für die Entwicklung.
 
-version: "3.4"
+version: "3.9"
 
 services:
 
@@ -11,7 +11,7 @@ services:
     volumes:
       - type: bind
         source: ./docker/web/nginx/ssl
-        target: /etc/ssl
+        target: /etc/nginx/ssl
 
   php:
     build:

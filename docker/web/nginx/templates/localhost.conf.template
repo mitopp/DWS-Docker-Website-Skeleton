@@ -8,8 +8,8 @@ server {
     root            $base${PUBLIC_ROOT};
 
     # SSL
-    ssl_certificate         /etc/ssl/localhost.crt;
-    ssl_certificate_key     /etc/ssl/localhost.key;
+    ssl_certificate         /etc/nginx/ssl/localhost.crt;
+    ssl_certificate_key     /etc/nginx/ssl/localhost.key;
 
     # security headers
     add_header X-XSS-Protection          "1; mode=block" always;
@@ -24,6 +24,11 @@ server {
         deny all;
     }
 
+    # logging
+    access_log          /var/log/nginx/localhost.access.log;
+    error_log           /var/log/nginx/localhost.error.log warn;
+
+    # index.php
     index           index.php;
 
     # index.php fallback
@@ -64,12 +69,11 @@ server {
     gzip_types      text/plain text/css text/xml application/json application/javascript application/rss+xml application/atom+xml image/svg+xml;
 
     # handle .php
-    location ~ ^/index\.php(/|$) {
+    location ~ \.php$ {
         # Sets the address of a FastCGI server. The address can be specified as a domain name or IP address, and a port
         # Use here the volume configured in `docker-compose.yml`
         # fastcgi_pass php:9000;
         fastcgi_pass unix:/var/run/php/php-fpm.sock;
-        fastcgi_split_path_info ^(.+\.php)(/.*)$;
 
         # 404
         try_files                     $fastcgi_script_name =404;
@@ -86,17 +90,6 @@ server {
         fastcgi_param DOCUMENT_ROOT   $realpath_root;
         fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
         fastcgi_param PHP_ADMIN_VALUE "open_basedir=$base/:/usr/lib/php/:/tmp/";
-
-        # Prevents URIs that include the front controller. This will 404:
-        # http://domain.tld/index.php/some-path
-        # Remove the internal directive to allow URIs like this
-        internal;
-    }
-
-    # return 404 for all other php files not matching the front controller
-    # this prevents access to other php files you don't want to be accessible.
-    location ~ \.php$ {
-        return 404;
     }
 }
 

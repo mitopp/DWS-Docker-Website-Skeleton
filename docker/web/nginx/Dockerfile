@@ -11,10 +11,16 @@ FROM nginx:${NGINX_VERSION}-alpine AS builder
 ########################################################################################################################
 FROM builder AS prod
 
+# healthcheck
+HEALTHCHECK --interval=60s --timeout=10s --retries=5 CMD curl --fail http://localhost || exit 1
 
 ########################################################################################################################
 # Development image
 ########################################################################################################################
 FROM builder AS dev
 
+# vhost
 COPY docker/web/nginx/templates/localhost.conf.template /etc/nginx/templates/default.conf.template
+
+# healthcheck
+HEALTHCHECK --interval=10s --timeout=3s --retries=3 CMD curl --fail http://localhost || exit 1
