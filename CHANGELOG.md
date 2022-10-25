@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.2.0] - 2022-10-25
+
+### Added
+
 - Compose file for development environment
 - Template for Nginx Host
 - PHP.ini configuration
@@ -25,8 +39,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Nginx: Advanced configuration with `Dockerfile`.
 - Nginx: SSL configuration for development.
 
-### Deprecated
-
 ### Removed
 
 - Image names and tags
@@ -36,8 +48,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Volume for the `php_socket` in `web` and `php` service ist configured as `bind`. Must be a volume and not a bind. #1
 - Valid image tags. #3
-
-### Security
 
 ## [0.1.0] - 2022-10-24
 
