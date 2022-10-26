@@ -35,19 +35,12 @@ COPY docker/php/fpm/conf.d/php.ini /usr/local/etc/php/conf.d/docker-php.ini
 # conf handling
 COPY docker/php/fpm/php-fpm.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 
-# healthcheck
-COPY docker/php/fpm/bin/docker-healthcheck.sh /usr/local/bin/docker-healthcheck
-RUN chmod +x /usr/local/bin/docker-healthcheck
-
 # composer
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-
-
 
 ########################################################################################################################
 # Production image
@@ -59,9 +52,6 @@ COPY docker/php/fpm/conf.d/php-production.ini /usr/local/etc/php/conf.d/docker-p
 
 # copy sources
 COPY app/ .
-
-# healthcheck
-HEALTHCHECK --interval=60s --timeout=10s --retries=5 CMD ["docker-healthcheck"]
 
 ########################################################################################################################
 # Development image
@@ -76,6 +66,3 @@ COPY docker/php/fpm/conf.d/php-development.ini /usr/local/etc/php/conf.d/docker-
 # xdebug
 RUN set -eux; \
 	install-php-extensions xdebug
-
-# healthcheck
-HEALTHCHECK --interval=10s --timeout=3s --retries=3 --start-period=10s CMD ["docker-healthcheck"]
