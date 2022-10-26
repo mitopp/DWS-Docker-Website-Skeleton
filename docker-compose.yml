@@ -23,6 +23,12 @@ services:
     environment:
       - DOCUMENT_ROOT=${COMPOSE_DOCUMENT_ROOT:-/srv/app}
       - PUBLIC_ROOT=${COMPOSE_PUBLIC_ROOT:-/}
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost || exit 1"]
+      interval: 50s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
     image: ${CONTAINER_PREFIX:-dws}-nginx:latest
     networks:
       - default
@@ -53,6 +59,12 @@ services:
       dockerfile: ./docker/php/fpm/Dockerfile
       target: prod
     container_name: ${CONTAINER_PREFIX:-dws}-php
+    healthcheck:
+      test: ["CMD-SHELL", "env -i REQUEST_METHOD=GET SCRIPT_NAME=/ping SCRIPT_FILENAME=/ping cgi-fcgi -bind -connect /var/run/php/php-fpm.sock || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
     image: ${CONTAINER_PREFIX:-dws}-php:latest
     networks:
       - default
