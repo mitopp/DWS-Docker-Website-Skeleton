@@ -91,6 +91,23 @@ server {
         fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
         fastcgi_param PHP_ADMIN_VALUE "open_basedir=$base/:/usr/lib/php/:/tmp/";
     }
+
+    # Enable php-fpm status page
+    location ~ ^/(status|ping)$ {
+        ## disable access logging for request if you prefer
+        access_log off;
+
+        ## Only allow trusted IPs for security, deny everyone else
+        # allow 127.0.0.1;
+        # allow 1.2.3.4;    # your IP here
+        # deny all;
+
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        ## Now the port or socket of the php-fpm pool we want the status of
+        fastcgi_pass unix:/var/run/php/php-fpm.sock;
+    }
 }
 
 # HTTP redirect
