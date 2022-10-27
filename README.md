@@ -13,7 +13,11 @@ A Docker-based installer and runtime for website applications.
 
 # Features
 
-* *TBD*
+* Production, development and CI ready
+* Healthcheck for containers
+* Syslog integration
+* Automatic HTTPS 
+* Super-readable and flexible configuration
 
 # Requirements
 
@@ -23,6 +27,7 @@ A Docker-based installer and runtime for website applications.
 # Documentation
 
 * [Build options](docs/build-options.md)
+* [Usage examples](docs/examples.md)
 * [Helpful commands](docs/commands.md)
 * [Troubleshooting](docs/troubleshooting.md)
 
