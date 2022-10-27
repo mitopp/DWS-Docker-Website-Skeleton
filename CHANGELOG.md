@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Healthcheck for Nginx and PHP-FPM
 - Logsys configuration
+- `.dockerignore` #5
 
 ### Changed
 
