@@ -80,6 +80,12 @@ $ VARIABLE=value docker compose command
 | `VERSION_NGINX` | `1.23.1`      | Diese Version des Webservers wird installiert. |
 | `VERSION_PHP`   | `8.1.11`      | Diese Version des PHP FPM wird installiert.    |
 
+### Syslog
+
+| Variable     | Default value                        | Description                           |
+|--------------|--------------------------------------|---------------------------------------|
+| `SYSLOG_URI` | `tcp://syslog.capita-europe.com:514` | The URI to the central Syslog server. |
+
 ### Other
 
 | Variable      | Default value | Description                                       |

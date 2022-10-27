@@ -10,12 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Healthcheck for Nginx and PHP-FPM
+- Logsys configuration
 
 ### Changed
 
 - Nginx: Path of SSL certificates.
 - Nginx: Enable routes for healthcheck.
 - Move healthcheck from `Dockerfile` to `docker-compose`.
+- Documenation
 
 ### Deprecated
 
