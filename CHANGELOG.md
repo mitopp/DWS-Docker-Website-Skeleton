@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.3.0] - 2022-10-27
+
+### Added
+
 - Healthcheck for Nginx and PHP-FPM
 - Logsys configuration
 - `.dockerignore` #5
@@ -20,15 +34,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Move healthcheck from `Dockerfile` to `docker-compose`.
 - Documenation
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - The environment variable `COMPOSE_CONTAINER_PREFIX` is not working. #6
-
-### Security
 
 ## [0.2.0] - 2022-10-25
 
