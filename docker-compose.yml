@@ -66,6 +66,13 @@ services:
       retries: 3
       start_period: 10s
     image: ${CONTAINER_PREFIX:-dws}-php:latest
+    logging:
+      driver: syslog
+      options:
+        # Das `syslog-format` sollte nicht definiert werden, weil ansonsten auf dem Syslog-Server kein entsprechender
+        # Ordner mit dem Namen der Hostmaschine erzeugt wird. Stattdessen ist der Hostname `docker-desktop` etc.
+        syslog-address: "${SYSLOG_URI:-tcp://syslog.capita-europe.com:514}"
+        tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
     networks:
       - default
     # The policy restarts a container irrespective of the exit code but will stop restarting when the service is stopped or removed.
