@@ -1,29 +1,28 @@
 # Build options
 
-Der gesamte Compose Prozess kann durch verschiedene Variablen angepasst werden. Dazu werden sogenannte `ENV` Variablen
-genutzt. Diese können entweder direkt im Compose Befehlt defineiert werden oder zentral durch eine `.env`Datei.
+The whole Compose process can be customized by different variables. For this purpose so-called `ENV` variables
+are used. These can be defined either directly in the Compose command or centrally by a `.env` file.
 
 ## Using the "--env-file" option
 
 ```shell
-# Kopie der Ausgangsdatei erstellen.
+# Create a copy of the source file.
 $ cp .env.dist .env
 
-# Variablen innerhalb der `.env` Datei ändern.
-# Datei als Option übergeben und nutzen.
+# Change variables within the `.env` file and use file as an option.
 $ docker compose --env-file .env command
 ```
 
-Dabei können auch unterschiedliche `.env` Dateien für unterschiedliche Environments genutzt werden. Docker Compose
-berücksichtigt standardmäßig die `.env` Datei im Pfad der `docker-compose.yml`. By passing the file as an argument, you
+This can also use different `.env` files for different environments. Docker Compose
+takes into account the `.env` file in the `docker-compose.yml` path by default. By passing the file as an argument, you
 can store it anywhere and name it appropriately, for example, `.env.ci`, `.env.prod`. [Passing the file path is
 done using the `--env-file` option](https://docs.docker.com/compose/environment-variables/#using-the---env-file--option)
 
 ### Advanced usage
 
-Durch die Verwendung von Standardwerten können auch nur einzelne Variablen definiert/überschrieben werden.
+By using default values also only single variables can be defined/overwritten.
 
-Beispiel:
+Example:
 
 ```shell
 $ cat .env
@@ -55,30 +54,30 @@ $ VARIABLE=value docker compose command
 | Variable                   | Default value | Description                                                                                                    |
 |----------------------------|---------------|----------------------------------------------------------------------------------------------------------------|
 | `COMPOSE_PROJECT_NAME`     | `null`        | Sets the project name. This value is prepended along with the service name to the container’s name on startup. |
-| `COMPOSE_CONTAINER_PREFIX` | `dws`         | Dieses Prefix wird jedem Container-Namen vorangestellt.                                                        |
-| `COMPOSE_DOCUMENT_ROOT`    | `/srv/app`    | Root Verzeichnis für den Webserver.                                                                            |
-| `COMPOSE_PUBLIC_ROOT`      | `/`           | Öffentliches Verzeichnis für den Webserver.                                                                    |
+| `COMPOSE_CONTAINER_PREFIX` | `dws`         | This prefix is prepended to each container name.                                                               |
+| `COMPOSE_DOCUMENT_ROOT`    | `/srv/app`    | Root directory for the web server.                                                                             |
+| `COMPOSE_PUBLIC_ROOT`      | `/`           | Public directory for the web server.                                                                           |
 
 ### Network
 
-| Variable                | Default value | Description                                                                 |
-|-------------------------|---------------|-----------------------------------------------------------------------------|
-| `NETWORK_IP_V4_SUBNET`  | `10.0.0.0/24` | Dieser IP-Bereich wird für die Konfiguration des Netzwerkes genutzt. (IPV4) |
-| `NETWORK_IP_V4_GATEWAY` | `10.0.0.1`    | Dieses Gateway  wird für die Konfiguration des Netzwerkes genutzt. (IPV4)   |
+| Variable                | Default value | Description                                                        |
+|-------------------------|---------------|--------------------------------------------------------------------|
+| `NETWORK_IP_V4_SUBNET`  | `10.0.0.0/24` | This IP range is used for the configuration of the network. (IPV4) |
+| `NETWORK_IP_V4_GATEWAY` | `10.0.0.1`    | This gateway is used for the configuration of the network. (IPV4)  |
 
 ### Ports
 
-| Variable     | Default value | Description                                     |
-|--------------|---------------|-------------------------------------------------|
-| `PORT_HTTP`  | `80`          | Dieser Port wird beim Webserver veröffentlicht. |
-| `PORT_HTTPS` | `443`         | Dieser Port wird beim Webserver veröffentlicht. |
+| Variable     | Default value | Description                               |
+|--------------|---------------|-------------------------------------------|
+| `PORT_HTTP`  | `80`          | This port is published at the web server. |
+| `PORT_HTTPS` | `443`         | This port is published at the web server. |
 
 ### Versions
 
-| Variable        | Default value | Description                                    |
-|-----------------|---------------|------------------------------------------------|
-| `VERSION_NGINX` | `1.23.1`      | Diese Version des Webservers wird installiert. |
-| `VERSION_PHP`   | `8.1.11`      | Diese Version des PHP FPM wird installiert.    |
+| Variable        | Default value | Description                                            |
+|-----------------|---------------|--------------------------------------------------------|
+| `VERSION_NGINX` | `1.23.1`      | This version of the web server is installed.           |
+| `VERSION_PHP`   | `8.1.11`      | This version of PHP FPM is installed in the container. |
 
 ### Syslog
 
@@ -88,6 +87,6 @@ $ VARIABLE=value docker compose command
 
 ### Other
 
-| Variable      | Default value | Description                                       |
-|---------------|---------------|---------------------------------------------------|
-| `XDEBUG_MODE` | `off`         | Konfiguriert den Xdebug Modus. (Development only) |
+| Variable      | Default value | Description                                    |
+|---------------|---------------|------------------------------------------------|
+| `XDEBUG_MODE` | `off`         | Configures the Xdebug mode. (Development only) |
