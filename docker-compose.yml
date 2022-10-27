@@ -16,7 +16,7 @@ services:
       context: .
       dockerfile: ./docker/web/nginx/Dockerfile
       target: prod
-    container_name: ${CONTAINER_PREFIX:-dws}-nginx
+    container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-nginx
     depends_on:
       php:
         condition: service_healthy
@@ -29,7 +29,7 @@ services:
       timeout: 10s
       retries: 3
       start_period: 20s
-    image: ${CONTAINER_PREFIX:-dws}-nginx:latest
+    image: ${COMPOSE_CONTAINER_PREFIX:-dws}-nginx:latest
     networks:
       - default
     ports:
@@ -58,14 +58,14 @@ services:
       context: .
       dockerfile: ./docker/php/fpm/Dockerfile
       target: prod
-    container_name: ${CONTAINER_PREFIX:-dws}-php
+    container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-php
     healthcheck:
       test: ["CMD-SHELL", "env -i REQUEST_METHOD=GET SCRIPT_NAME=/ping SCRIPT_FILENAME=/ping cgi-fcgi -bind -connect /var/run/php/php-fpm.sock || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 10s
-    image: ${CONTAINER_PREFIX:-dws}-php:latest
+    image: ${COMPOSE_CONTAINER_PREFIX:-dws}-php:latest
     logging:
       driver: syslog
       options:

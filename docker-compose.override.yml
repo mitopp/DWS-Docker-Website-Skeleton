@@ -7,7 +7,7 @@ services:
   web:
     build:
       target: dev
-    image: ${CONTAINER_PREFIX:-dws}-nginx:dev-master
+    image: ${COMPOSE_CONTAINER_PREFIX:-dws}-nginx:dev-master
     volumes:
       - type: bind
         source: ./docker/web/nginx/ssl
@@ -24,7 +24,7 @@ services:
     extra_hosts:
       # Ensure that host.docker.internal is correctly defined on Linux
       - host.docker.internal:host-gateway
-    image: ${CONTAINER_PREFIX:-dws}-php:dev-master
+    image: ${COMPOSE_CONTAINER_PREFIX:-dws}-php:dev-master
     volumes:
       # Die Applikationsdateien werden als Share in den Container gemounted.
       - type: bind
