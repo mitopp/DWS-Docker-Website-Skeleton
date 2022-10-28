@@ -10,9 +10,9 @@
 
 * Copy `.env.dist` as `.env.[stage_name]` and change values.
 * Create `docker-compose.[stage_name].yml` and extend or override services, network and volumens on demand.
-* RUN `docker compose --file docker-compose.[stage_name].yml --env-file .env.[stage_name] build --pull --no-cache` to
+* RUN `docker compose --file docker-compose.yml --file docker-compose.[stage_name].yml --env-file .env.[stage_name] build --pull --no-cache` to
   build fresh images.
-* RUN `docker compose --file docker-compose.[stage_name].yml --env-file .env.[stage_name] up` to start the containers.
+* RUN `docker compose --file docker-compose.yml --file docker-compose.[stage_name].yml --env-file .env.[stage_name] up` to start the containers.
   (the logs will be displayed in the current shell)
 
 ## Advanced environment handling
