@@ -1,21 +1,20 @@
-# Diese Compose Datei dient nur der Definierung der einzelnen Services, Netzwerken und Volumens.
-# Die Standard Konfiguration wird durch Compose Dateien wie `docker-compose.override.yml`, `docker-compose.preview.yml`
-# und `docker-compose.prod.yml` erweitert und geändert.
+# This docker compose file is only used to define the individual services, networks and volumes.
+# The default configuration is extended and modified by Compose files like `docker-compose.override.yml`,
+# `docker-compose.preview.yml` and `docker-compose.prod.yml`.
 
 version: "3.9"
 
 services:
 
-  # Webserver als Alias für verschiedene images wie Apache, Nginx oder Ähnliche.
-  # Dabei ist der Hostname `web` immer fest und kann in der erweiterten Konfiguration genutzt werden.
-  # Die Benennung des Containers erfolgt mit entsprechendem Prefix.
+  # Web server as alias for different images like Apache, Nginx or similar.
+  # Thereby the hostname `web` is always fixed and can be used in the advanced configuration.
+  # The naming of the container is done with appropriate prefix.
   web:
     build:
       args:
         - NGINX_VERSION=${VERSION_NGINX:-1.23.1}
       context: .
       dockerfile: ./docker/web/nginx/Dockerfile
-      target: prod
     container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-nginx
     depends_on:
       php:
@@ -23,8 +22,11 @@ services:
     environment:
       - DOCUMENT_ROOT=${COMPOSE_DOCUMENT_ROOT:-/srv/app}
       - PUBLIC_ROOT=${COMPOSE_PUBLIC_ROOT:-/}
+      - SSL_CERT_FILE=${SSL_CERT_FILE:-/etc/nginx/ssl/localhost.crt}
+      - SSL_KEY_FILE=${SSL_KEY_FILE:-/etc/nginx/ssl/localhost.key}
+      - HOSTNAME=${COMPOSE_HOST_NAME:-localhost}
     healthcheck:
-      test: ["CMD-SHELL", "curl --fail http://localhost || exit 1"]
+      test: [ "CMD-SHELL", "curl --fail http://localhost || exit 1" ]
       interval: 50s
       timeout: 10s
       retries: 3
@@ -33,12 +35,8 @@ services:
     networks:
       - default
     ports:
-      - target: 80
-        published: ${PORT_HTTP:-80}
-        protocol: tcp
-      - target: 443
-        published: ${PORT_HTTPS:-443}
-        protocol: tcp
+      - 80:${PORT_HTTP:-80}
+      - 443:${PORT_HTTPS:-443}
     # The policy restarts a container irrespective of the exit code but will stop restarting when the service is stopped or removed.
     restart: unless-stopped
     volumes:
@@ -49,30 +47,26 @@ services:
         source: ./app
         target: ${COMPOSE_DOCUMENT_ROOT:-/srv/app}
         read_only: true
+      - type: bind
+        source: ./docker/web/nginx/ssl
+        target: /etc/nginx/ssl
     working_dir: /etc/nginx
 
   php:
     build:
       args:
         - PHP_VERSION=${VERSION_PHP:-8.1.11}
+        - DOCUMENT_ROOT=${COMPOSE_DOCUMENT_ROOT:-/srv/app}
       context: .
       dockerfile: ./docker/php/fpm/Dockerfile
-      target: prod
     container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-php
     healthcheck:
-      test: ["CMD-SHELL", "env -i REQUEST_METHOD=GET SCRIPT_NAME=/ping SCRIPT_FILENAME=/ping cgi-fcgi -bind -connect /var/run/php/php-fpm.sock || exit 1"]
+      test: [ "CMD-SHELL", "env -i REQUEST_METHOD=GET SCRIPT_NAME=/ping SCRIPT_FILENAME=/ping cgi-fcgi -bind -connect /var/run/php/php-fpm.sock || exit 1" ]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 10s
     image: ${COMPOSE_CONTAINER_PREFIX:-dws}-php:latest
-    logging:
-      driver: syslog
-      options:
-        # Das `syslog-format` sollte nicht definiert werden, weil ansonsten auf dem Syslog-Server kein entsprechender
-        # Ordner mit dem Namen der Hostmaschine erzeugt wird. Stattdessen ist der Hostname `docker-desktop` etc.
-        syslog-address: "${SYSLOG_URI:-tcp://syslog.capita-europe.com:514}"
-        tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
     networks:
       - default
     # The policy restarts a container irrespective of the exit code but will stop restarting when the service is stopped or removed.
@@ -85,8 +79,8 @@ services:
 
 networks:
 
-  # Das Standard Netzwerk kann durch ENV-Variablen konfiguriert werden.
-  # Auch eine Erweiterung für IP_V6 ist möglich.
+  # The standard network can be configured by ENV variables.
+  # Also, an extension for IP_V6 is possible.
   default:
     ipam:
       config:
@@ -95,5 +89,5 @@ networks:
 
 volumes:
 
-  # Dieses Volume dient der Verbindung vpn Webserver und PHP-FPM via socket.
+  # This volume is used to connect vpn web server and PHP-FPM via socket.
   php_socket:

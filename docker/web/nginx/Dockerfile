@@ -6,6 +6,9 @@ ARG NGINX_VERSION=1.23.1
 # https://docs.docker.com/compose/compose-file/#target
 FROM nginx:${NGINX_VERSION}-alpine AS builder
 
+# vhost
+COPY docker/web/nginx/templates/localhost.conf.template /etc/nginx/templates/default.conf.template
+
 ########################################################################################################################
 # Production image
 ########################################################################################################################
@@ -15,6 +18,3 @@ FROM builder AS prod
 # Development image
 ########################################################################################################################
 FROM builder AS dev
-
-# vhost
-COPY docker/web/nginx/templates/localhost.conf.template /etc/nginx/templates/default.conf.template

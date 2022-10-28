@@ -42,6 +42,11 @@ ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+ARG DOCUMENT_ROOT="/srv/app"
+
+# copy sources
+COPY app/ ${DOCUMENT_ROOT}
+
 ########################################################################################################################
 # Production image
 ########################################################################################################################
@@ -49,9 +54,6 @@ FROM builder AS prod
 
 # ini handling
 COPY docker/php/fpm/conf.d/php-production.ini /usr/local/etc/php/conf.d/docker-php-production.ini
-
-# copy sources
-COPY app/ .
 
 ########################################################################################################################
 # Development image

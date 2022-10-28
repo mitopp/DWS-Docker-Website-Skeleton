@@ -1,0 +1,20 @@
+# This file extends or overwrites the `docker-compose.yml` for Production.
+
+version: "3.9"
+
+services:
+
+  web:
+    build:
+      target: prod
+
+  php:
+    build:
+      target: prod
+    logging:
+      driver: syslog
+      options:
+        # The `syslog-format` should not be defined, because otherwise no corresponding # folder with the name of the host machine will be created on the syslog server.
+        # folder with the name of the host machine will be created. Instead, the hostname is `docker-desktop` etc.
+        syslog-address: "${SYSLOG_URI:-tcp://syslog.capita-europe.com:514}"
+        tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"

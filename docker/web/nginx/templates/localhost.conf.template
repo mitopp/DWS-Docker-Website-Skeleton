@@ -1,15 +1,15 @@
 server {
-    listen          443 ssl http2;
-    listen          [::]:443 ssl http2;
+    listen                  443 ssl http2;
+    listen                  [::]:443 ssl http2;
 
-    server_name     localhost;
+    server_name             ${HOSTNAME};
 
-    set             $base ${DOCUMENT_ROOT};
-    root            $base${PUBLIC_ROOT};
+    set                     $base ${DOCUMENT_ROOT};
+    root                    $base${PUBLIC_ROOT};
 
     # SSL
-    ssl_certificate         /etc/nginx/ssl/localhost.crt;
-    ssl_certificate_key     /etc/nginx/ssl/localhost.key;
+    ssl_certificate         ${SSL_CERT_FILE};
+    ssl_certificate_key     ${SSL_KEY_FILE};
 
     # security headers
     add_header X-XSS-Protection          "1; mode=block" always;
@@ -25,11 +25,11 @@ server {
     }
 
     # logging
-    access_log          /var/log/nginx/localhost.access.log;
-    error_log           /var/log/nginx/localhost.error.log warn;
+    access_log              /var/log/nginx/${HOSTNAME}.access.log;
+    error_log               /var/log/nginx/${HOSTNAME}.error.log warn;
 
     # index.php
-    index           index.php;
+    index                   index.php;
 
     # index.php fallback
     location / {
@@ -62,34 +62,34 @@ server {
     }
 
     # gzip
-    gzip            on;
-    gzip_vary       on;
-    gzip_proxied    any;
-    gzip_comp_level 6;
-    gzip_types      text/plain text/css text/xml application/json application/javascript application/rss+xml application/atom+xml image/svg+xml;
+    gzip                    on;
+    gzip_vary               on;
+    gzip_proxied            any;
+    gzip_comp_level         6;
+    gzip_types              text/plain text/css text/xml application/json application/javascript application/rss+xml application/atom+xml image/svg+xml;
 
     # handle .php
     location ~ \.php$ {
         # Sets the address of a FastCGI server. The address can be specified as a domain name or IP address, and a port
         # Use here the volume configured in `docker-compose.yml`
         # fastcgi_pass php:9000;
-        fastcgi_pass unix:/var/run/php/php-fpm.sock;
+        fastcgi_pass                    unix:/var/run/php/php-fpm.sock;
 
         # 404
-        try_files                     $fastcgi_script_name =404;
+        try_files                       $fastcgi_script_name =404;
 
         # default fastcgi_params
-        include                       fastcgi_params;
+        include                         fastcgi_params;
 
         # fastcgi settings
-        fastcgi_index                 index.php;
-        fastcgi_buffers               8 16k;
-        fastcgi_buffer_size           32k;
+        fastcgi_index                   index.php;
+        fastcgi_buffers                 8 16k;
+        fastcgi_buffer_size             32k;
 
         # fastcgi params
-        fastcgi_param DOCUMENT_ROOT   $realpath_root;
-        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
-        fastcgi_param PHP_ADMIN_VALUE "open_basedir=$base/:/usr/lib/php/:/tmp/";
+        fastcgi_param DOCUMENT_ROOT     $realpath_root;
+        fastcgi_param SCRIPT_FILENAME   $realpath_root$fastcgi_script_name;
+        fastcgi_param PHP_ADMIN_VALUE   "open_basedir=$base/:/usr/lib/php/:/tmp/";
     }
 
     # Enable php-fpm status page
@@ -115,9 +115,9 @@ server {
     listen          80;
     listen          [::]:80;
 
-    server_name     localhost;
+    server_name     ${HOSTNAME};
 
     location / {
-        return 301 https://localhost$request_uri;
+        return 301 https://${HOSTNAME}$request_uri;
     }
 }

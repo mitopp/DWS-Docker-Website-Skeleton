@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Production: `docker-compose.prod.yml`
+- `ENV` variables for web server config 
 
 ### Changed
 
