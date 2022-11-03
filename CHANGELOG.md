@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Rename `.env` variables
 - Documentation: `build-options` and `commands`
 - `.editorconfig` for line endings and other
+- Line endings
 
 ### Deprecated
 
