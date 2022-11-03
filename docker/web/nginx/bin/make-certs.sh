@@ -2,6 +2,7 @@
 set -e
 
 CN=localhost
+
 if [ "${HOST_NAME}" ]; then
 	# shellcheck disable=SC2034
 	CN="${HOST_NAME}"
