@@ -27,7 +27,11 @@ else
     if [ ! -f "/etc/nginx/ssl/rootCA.crt" ]; then
         echo "generating"
     	# shellcheck disable=SC2039
-    	openssl req -x509 -new -nodes -key "/etc/nginx/ssl/rootCA.key" -sha256 -days 1024 -config <(cat "/etc/ssl/dev.cnf") -out "/etc/nginx/ssl/rootCA.crt"
+    	openssl req \
+    	    -x509 -new -nodes \
+    	    -key "/etc/nginx/ssl/rootCA.key" \
+    	    -sha256 -days 1024 -config <(cat "/etc/ssl/dev.cnf") \
+    	    -out "/etc/nginx/ssl/rootCA.crt"
     else
     	echo "already exists"
     fi
