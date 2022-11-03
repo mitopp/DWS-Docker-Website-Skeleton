@@ -20,11 +20,11 @@ services:
       php:
         condition: service_healthy
     environment:
-      - DOCUMENT_ROOT=${COMPOSE_DOCUMENT_ROOT:-/srv/app}
-      - PUBLIC_ROOT=${COMPOSE_PUBLIC_ROOT:-/}
+      - DOCUMENT_ROOT=${DOCUMENT_ROOT:-/srv/app}
+      - PUBLIC_ROOT=${PUBLIC_ROOT:-/}
       - SSL_CERT_FILE=${SSL_CERT_FILE:-/etc/nginx/ssl/localhost.crt}
       - SSL_KEY_FILE=${SSL_KEY_FILE:-/etc/nginx/ssl/localhost.key}
-      - HOSTNAME=${COMPOSE_HOST_NAME:-localhost}
+      - HOSTNAME=${HOST_NAME:-localhost}
     healthcheck:
       test: [ "CMD-SHELL", "curl --fail http://localhost || exit 1" ]
       interval: 50s
@@ -45,7 +45,7 @@ services:
         target: /var/run/php
       - type: bind
         source: ./app
-        target: ${COMPOSE_DOCUMENT_ROOT:-/srv/app}
+        target: ${DOCUMENT_ROOT:-/srv/app}
         read_only: true
       - type: bind
         source: ./docker/web/nginx/ssl
@@ -56,7 +56,7 @@ services:
     build:
       args:
         - PHP_VERSION=${VERSION_PHP:-8.1.11}
-        - DOCUMENT_ROOT=${COMPOSE_DOCUMENT_ROOT:-/srv/app}
+        - DOCUMENT_ROOT=${DOCUMENT_ROOT:-/srv/app}
       context: .
       dockerfile: ./docker/php/fpm/Dockerfile
     container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-php
@@ -75,7 +75,7 @@ services:
       - type: volume
         source: php_socket
         target: /var/run/php
-    working_dir: ${COMPOSE_DOCUMENT_ROOT:-/srv/app}
+    working_dir: ${DOCUMENT_ROOT:-/srv/app}
 
 networks:
 
