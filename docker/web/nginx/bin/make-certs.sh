@@ -3,9 +3,9 @@ set -e
 
 CN=localhost
 
-if [ "${HOST_NAME}" ]; then
+if [ "${HOSTNAME}" ]; then
 	# shellcheck disable=SC2034
-	CN="${HOST_NAME}"
+	CN="${HOSTNAME}"
 fi
 
 if [ ! -d "/etc/nginx/ssl" ] || [ -f "/etc/nginx/ssl/.nomount" ]; then
