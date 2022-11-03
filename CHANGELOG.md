@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `ENV` variables for web server config 
 - Nginx: SSL certificate generation for development.
 - `index.php` in `app` directory, otherwise compose fails
+- `DOCKER_BUILDKIT` as default
 
 ### Changed
 
@@ -23,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - Self-signed SSL certificates
+- Unused SSL variables in `.env.dist`
 
 ### Fixed
 
