@@ -20,7 +20,7 @@ FROM builder AS prod
 FROM builder AS dev
 
 RUN apk add --no-cache --update \
-    openssl \
+    openssl
 
 # Generate self-signed SSL certificates
 COPY docker/web/nginx/conf/dev.cnf /etc/ssl/dev.cnf

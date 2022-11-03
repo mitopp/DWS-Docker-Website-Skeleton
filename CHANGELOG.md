@@ -35,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Long command in `make-certs.sh` entrypoint
 - `.gitkeep` file for directory exists
 - Typo in `make-certs.sh` with `HOSTNAME`
+- Useless linebreak in `Dockerfile`
 
 ### Security
 
