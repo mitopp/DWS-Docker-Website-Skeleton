@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Documentation: Create another stages
 - Long command in `make-certs.sh` entrypoint
+- `.gitkeep` file for directory exists
 
 ### Security
 
