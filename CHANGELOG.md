@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Production: `docker-compose.prod.yml`
-- `ENV` variables for web server config 
+- `ENV` variables for web server config
 - Nginx: SSL certificate generation for development.
 - `index.php` in `app` directory, otherwise compose fails
 - `DOCKER_BUILDKIT` as default
@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Rename `.env` variables
 - Documentation: `build-options` and `commands`
+- `.editorconfig` for line endings and other
 
 ### Deprecated
 
