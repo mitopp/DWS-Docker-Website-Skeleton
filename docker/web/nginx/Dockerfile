@@ -18,3 +18,13 @@ FROM builder AS prod
 # Development image
 ########################################################################################################################
 FROM builder AS dev
+
+RUN apk add --no-cache --update \
+    openssl
+
+# Generate self-signed SSL certificates
+COPY docker/web/nginx/conf/dev.cnf /etc/ssl/dev.cnf
+COPY docker/web/nginx/bin/make-certs.sh /docker-entrypoint.d/00-make-certs.sh
+
+RUN chmod +x /docker-entrypoint.d/00-make-certs.sh
+RUN mkdir /etc/nginx/ssl && touch /etc/nginx/ssl/.nomount

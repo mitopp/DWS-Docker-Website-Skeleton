@@ -8,8 +8,8 @@ server {
     root                    $base${PUBLIC_ROOT};
 
     # SSL
-    ssl_certificate         ${SSL_CERT_FILE};
-    ssl_certificate_key     ${SSL_KEY_FILE};
+    ssl_certificate         /etc/nginx/ssl/${HOSTNAME}.crt;
+    ssl_certificate_key     /etc/nginx/ssl/${HOSTNAME}.key;
 
     # security headers
     add_header X-XSS-Protection          "1; mode=block" always;
@@ -93,7 +93,7 @@ server {
     }
 
     # Enable php-fpm status page
-    location ~ ^/(status|ping)$ {
+    location ~ ^/ping$ {
         ## disable access logging for request if you prefer
         access_log off;
 

@@ -22,9 +22,7 @@ services:
     environment:
       - DOCUMENT_ROOT=${DOCUMENT_ROOT:-/srv/app}
       - PUBLIC_ROOT=${PUBLIC_ROOT:-/}
-      - SSL_CERT_FILE=${SSL_CERT_FILE:-/etc/nginx/ssl/localhost.crt}
-      - SSL_KEY_FILE=${SSL_KEY_FILE:-/etc/nginx/ssl/localhost.key}
-      - HOSTNAME=${HOST_NAME:-localhost}
+      - HOSTNAME=${HOSTNAME:-localhost}
     healthcheck:
       test: [ "CMD-SHELL", "curl --fail http://localhost || exit 1" ]
       interval: 50s
@@ -48,7 +46,7 @@ services:
         target: ${DOCUMENT_ROOT:-/srv/app}
         read_only: true
       - type: bind
-        source: ./docker/web/nginx/ssl
+        source: ./docker/web/nginx/data/ssl
         target: /etc/nginx/ssl
     working_dir: /etc/nginx
 
