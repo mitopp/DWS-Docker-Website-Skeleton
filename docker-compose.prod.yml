@@ -18,7 +18,3 @@ services:
         # folder with the name of the host machine will be created. Instead, the hostname is `docker-desktop` etc.
         syslog-address: "${SYSLOG_URI:-tcp://syslog.capita-europe.com:514}"
         tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
-    volumes:
-      - type: bind
-        source: ./docker/web/nginx/data/ssl
-        target: /etc/nginx/ssl

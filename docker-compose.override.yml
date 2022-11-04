@@ -8,6 +8,11 @@ services:
     build:
       target: dev
     image: ${COMPOSE_CONTAINER_PREFIX:-dws}-nginx:dev-master
+    volumes:
+      # Mount a folder for self-signed certificates only for development
+      - type: bind
+        source: ./docker/web/nginx/data/ssl
+        target: /etc/nginx/ssl
 
   php:
     build:

@@ -41,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `.gitkeep` file for directory exists
 - Typo in `make-certs.sh` with `HOSTNAME`
 - Useless linebreak in `Dockerfile`
+- Mount folder for self-signed certificates only for development
 
 ### Security
 
