@@ -1,5 +1,9 @@
 # DWS - Docker Website Skeleton
 
+[![MIT License][license-shield]][license-url]
+[![Contributors][contributors-shield]][contributors-url]
+[![Issues][issues-shield]][issues-url]
+
 A Docker-based installer and runtime for website applications.
 
 ## Getting started
@@ -51,3 +55,16 @@ Docker Website Skeleton is available under the [MIT License](LICENSE.md).
 Created by Michael Topp, co-maintained by Maik Caspar and Björn Grzywatz. Inspired
 by [Kévin Dunglas](https://github.com/dunglas/symfony-docker)
 and [Gary Clarke](https://github.com/GaryClarke/nginx-php7.4-mysql8-node-docker-network).
+
+
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+
+[contributors-url]: http://git.capita-europe.com/mitopp/dws-docker-website-skeleton/-/graphs/master
+
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+
+[license-url]: http://git.capita-europe.com/mitopp/dws-docker-website-skeleton/-/blob/master/LICENSE.md
+
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+
+[issues-url]: http://git.capita-europe.com/mitopp/dws-docker-website-skeleton/-/issues
