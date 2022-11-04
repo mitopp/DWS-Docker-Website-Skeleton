@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Self-signed SSL certificates
 - Unused SSL variables in `.env.dist`
+- Documentation: `index.php` is standard
 
 ### Fixed
 

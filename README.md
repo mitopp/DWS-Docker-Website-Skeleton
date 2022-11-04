@@ -13,13 +13,6 @@ A Docker-based installer and runtime for website applications.
    and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334)
 5. Run `docker compose down --remove-orphans` to stop the Docker containers.
 
-> For testing purposes, an `index.php` file with the content
-> ```php
-> <?php
-> phpinfo();
-> ```
-> can be created in the app directory.
-
 # Features
 
 * Production, development and CI ready
