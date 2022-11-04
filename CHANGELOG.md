@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Line endings
 - Documentation: `troubleshooting` for different line endings
 - Move volume for SSL certificates to development only
+- Documentation: Link the contribution guide
 
 ### Deprecated
 

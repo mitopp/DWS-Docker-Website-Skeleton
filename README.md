@@ -11,11 +11,11 @@ A Docker-based installer and runtime for website applications.
    and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334)
 5. Run `docker compose down --remove-orphans` to stop the Docker containers.
 
-> For testing purposes, an `index.php` file with the content 
+> For testing purposes, an `index.php` file with the content
 > ```php
 > <?php
 > phpinfo();
-> ``` 
+> ```
 > can be created in the app directory.
 
 # Features
@@ -23,7 +23,7 @@ A Docker-based installer and runtime for website applications.
 * Production, development and CI ready
 * Healthcheck for containers
 * Syslog integration
-* Automatic HTTPS 
+* Automatic HTTPS
 * Super-readable and flexible configuration
 
 # Requirements
@@ -37,6 +37,10 @@ A Docker-based installer and runtime for website applications.
 * [Usage examples](docs/examples.md)
 * [Helpful commands](docs/commands.md)
 * [Troubleshooting](docs/troubleshooting.md)
+
+# Contributing
+
+Please read the [Contribution guide](CONTRIBUTING.md) for further informations.
 
 # License
 
