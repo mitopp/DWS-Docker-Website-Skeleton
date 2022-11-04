@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Nginx: SSL certificate generation for development.
 - `index.php` in `app` directory, otherwise compose fails
 - `DOCKER_BUILDKIT` as default
+- `.gitattributes` for line endings
 
 ### Changed
 
