@@ -1,5 +1,7 @@
 # DWS - Docker Website Skeleton
 
+[![MIT License][license-shield]][license-url]
+
 A Docker-based installer and runtime for website applications.
 
 ## Getting started
@@ -11,19 +13,12 @@ A Docker-based installer and runtime for website applications.
    and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334)
 5. Run `docker compose down --remove-orphans` to stop the Docker containers.
 
-> For testing purposes, an `index.php` file with the content 
-> ```php
-> <?php
-> phpinfo();
-> ``` 
-> can be created in the app directory.
-
 # Features
 
 * Production, development and CI ready
 * Healthcheck for containers
 * Syslog integration
-* Automatic HTTPS 
+* Automatic HTTPS
 * Super-readable and flexible configuration
 
 # Requirements
@@ -38,6 +33,10 @@ A Docker-based installer and runtime for website applications.
 * [Helpful commands](docs/commands.md)
 * [Troubleshooting](docs/troubleshooting.md)
 
+# Contributing
+
+Please read the [Contribution guide](CONTRIBUTING.md) for further informations.
+
 # License
 
 Docker Website Skeleton is available under the [MIT License](LICENSE.md).
@@ -47,3 +46,7 @@ Docker Website Skeleton is available under the [MIT License](LICENSE.md).
 Created by Michael Topp, co-maintained by Maik Caspar and Björn Grzywatz. Inspired
 by [Kévin Dunglas](https://github.com/dunglas/symfony-docker)
 and [Gary Clarke](https://github.com/GaryClarke/nginx-php7.4-mysql8-node-docker-network).
+
+
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: http://git.capita-europe.com/mitopp/dws-docker-website-skeleton/-/blob/master/LICENSE.md

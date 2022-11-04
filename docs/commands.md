@@ -9,10 +9,10 @@
 $ docker compose convert
 
 # Review environment
-$ docker compose --file docker-compose.rev.yml --env-file .env.rev convert
+$ docker compose --file docker-compose.yml --file docker-compose.rev.yml --env-file .env.rev convert
 
 # Production environment
-$ docker compose --file docker-compose.prod.yml --env-file .env.prod convert
+$ docker compose --file docker-compose.yml --file docker-compose.prod.yml --env-file .env.prod convert
 ```
 
 ## Other

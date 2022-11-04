@@ -1,4 +1,4 @@
-# Diese Datei erweitert oder überschreibt  die `docker-compose.yml` für die Entwicklung.
+# This file extends or overwrites the `docker-compose.yml` for development.
 
 version: "3.9"
 
@@ -9,8 +9,9 @@ services:
       target: dev
     image: ${COMPOSE_CONTAINER_PREFIX:-dws}-nginx:dev-master
     volumes:
+      # Mount a folder for self-signed certificates only for development
       - type: bind
-        source: ./docker/web/nginx/ssl
+        source: ./docker/web/nginx/data/ssl
         target: /etc/nginx/ssl
 
   php:
@@ -26,7 +27,7 @@ services:
       - host.docker.internal:host-gateway
     image: ${COMPOSE_CONTAINER_PREFIX:-dws}-php:dev-master
     volumes:
-      # Die Applikationsdateien werden als Share in den Container gemounted.
+      # The application files are mounted as a share in the container.
       - type: bind
         source: ./app
-        target: ${COMPOSE_DOCUMENT_ROOT:-/srv/app}
+        target: ${DOCUMENT_ROOT:-/srv/app}

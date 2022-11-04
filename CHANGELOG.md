@@ -9,13 +9,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Production: `docker-compose.prod.yml`
+- `ENV` variables for web server config
+- Nginx: SSL certificate generation for development.
+- `index.php` in `app` directory, otherwise compose fails
+- `DOCKER_BUILDKIT` as default
+- `.gitattributes` for line endings
+- Contribution guide
+
 ### Changed
+
+- Rename `.env` variables
+- Documentation: `build-options` and `commands`
+- `.editorconfig` for line endings and other
+- Line endings
+- Documentation: `troubleshooting` for different line endings
+- Move volume for SSL certificates to development only
+- Documentation: Link the contribution guide
+- Prefix for `00-make-certs.sh` entrypoint for output
 
 ### Deprecated
 
 ### Removed
 
+- Self-signed SSL certificates
+- Unused SSL variables in `.env.dist`
+- Documentation: `index.php` is standard
+
 ### Fixed
+
+- Documentation: Create another stages
+- Long command in `make-certs.sh` entrypoint
+- `.gitkeep` file for directory exists
+- Typo in `make-certs.sh` with `HOSTNAME`
+- Useless linebreak in `Dockerfile`
+- Mount folder for self-signed certificates only for development
 
 ### Security
 

@@ -1,0 +1,17 @@
+[req]
+distinguished_name = req_distinguished_name
+x509_extensions = v3_req
+prompt = no
+
+[req_distinguished_name]
+countryName = DE
+stateOrProvinceName = Berlin
+localityName = Berlin
+organizationName = Capita Customer Services GmbH
+organizationalUnitName = IT-Dev DWS
+emailAddress = it.development@capita-europe.com
+
+[v3_req]
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid,issuer
+basicConstraints = CA:TRUE

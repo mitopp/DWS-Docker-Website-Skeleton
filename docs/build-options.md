@@ -49,14 +49,18 @@ $ VARIABLE=value docker compose command
 
 ## Available variables and their default values
 
+### Docker
+
+| Variable          | Default value | Description                                    |
+|-------------------|---------------|------------------------------------------------|
+| `DOCKER_BUILDKIT` | `1`           | Enable/Disable faster builds and new features. |
+
 ### Compose
 
 | Variable                   | Default value | Description                                                                                                    |
 |----------------------------|---------------|----------------------------------------------------------------------------------------------------------------|
 | `COMPOSE_PROJECT_NAME`     | `null`        | Sets the project name. This value is prepended along with the service name to the container’s name on startup. |
 | `COMPOSE_CONTAINER_PREFIX` | `dws`         | This prefix is prepended to each container name.                                                               |
-| `COMPOSE_DOCUMENT_ROOT`    | `/srv/app`    | Root directory for the web server.                                                                             |
-| `COMPOSE_PUBLIC_ROOT`      | `/`           | Public directory for the web server.                                                                           |
 
 ### Network
 
@@ -87,6 +91,9 @@ $ VARIABLE=value docker compose command
 
 ### Other
 
-| Variable      | Default value | Description                                    |
-|---------------|---------------|------------------------------------------------|
-| `XDEBUG_MODE` | `off`         | Configures the Xdebug mode. (Development only) |
+| Variable        | Default value | Description                                    |
+|-----------------|---------------|------------------------------------------------|
+| `DOCUMENT_ROOT` | `/srv/app`    | Root directory for the web server.             |
+| `HOSTNAME`      | `localhost`   | The name of the host for the web server.       |
+| `PUBLIC_ROOT`   | `/`           | Public directory for the web server.           |
+| `XDEBUG_MODE`   | `off`         | Configures the Xdebug mode. (Development only) |

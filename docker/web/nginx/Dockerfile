@@ -6,6 +6,9 @@ ARG NGINX_VERSION=1.23.1
 # https://docs.docker.com/compose/compose-file/#target
 FROM nginx:${NGINX_VERSION}-alpine AS builder
 
+# vhost
+COPY docker/web/nginx/templates/localhost.conf.template /etc/nginx/templates/default.conf.template
+
 ########################################################################################################################
 # Production image
 ########################################################################################################################
@@ -16,5 +19,12 @@ FROM builder AS prod
 ########################################################################################################################
 FROM builder AS dev
 
-# vhost
-COPY docker/web/nginx/templates/localhost.conf.template /etc/nginx/templates/default.conf.template
+RUN apk add --no-cache --update \
+    openssl
+
+# Generate self-signed SSL certificates
+COPY docker/web/nginx/conf/dev.cnf /etc/ssl/dev.cnf
+COPY docker/web/nginx/bin/make-certs.sh /docker-entrypoint.d/00-make-certs.sh
+
+RUN chmod +x /docker-entrypoint.d/00-make-certs.sh
+RUN mkdir /etc/nginx/ssl && touch /etc/nginx/ssl/.nomount

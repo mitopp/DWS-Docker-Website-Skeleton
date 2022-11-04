@@ -1,1 +1,6 @@
 .idea/*
+
+docker/web/nginx/data/ssl/*.crt
+docker/web/nginx/data/ssl/*.key
+docker/web/nginx/data/ssl/*.csr
+docker/web/nginx/data/ssl/*.srl
