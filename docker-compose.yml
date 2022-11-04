@@ -45,9 +45,6 @@ services:
         source: ./app
         target: ${DOCUMENT_ROOT:-/srv/app}
         read_only: true
-      - type: bind
-        source: ./docker/web/nginx/data/ssl
-        target: /etc/nginx/ssl
     working_dir: /etc/nginx
 
   php:
