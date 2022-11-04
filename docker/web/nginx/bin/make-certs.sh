@@ -9,13 +9,13 @@ if [ "${HOSTNAME}" ]; then
 fi
 
 if [ ! -d "/etc/nginx/ssl" ] || [ -f "/etc/nginx/ssl/.nomount" ]; then
-	echo "Please mount a folder or volume into /etc/nginx/ssl to execute"
+	echo "00-make-certs.sh: Please mount a folder or volume into /etc/nginx/ssl to execute"
 	exit 1
 else
-	echo "Checking self signed Dev-Environment certificates..."
+	echo "00-make-certs.sh: Checking self signed Dev-Environment certificates..."
 
 	# shellcheck disable=SC2039
-	echo -n "Root-CA Key: "
+	echo -n "00-make-certs.sh: Root-CA Key: "
 	if [ ! -f "/etc/nginx/ssl/rootCA.key" ]; then
 		echo "generating"
 		openssl genrsa -out "/etc/nginx/ssl/rootCA.key" 4096
@@ -24,7 +24,7 @@ else
 	fi
 
 	# shellcheck disable=SC2039
-	echo -n "Root-CA Cert: "
+	echo -n "00-make-certs.sh: Root-CA Cert: "
 	if [ ! -f "/etc/nginx/ssl/rootCA.crt" ]; then
 		echo "generating"
 		# shellcheck disable=SC2039
@@ -38,7 +38,7 @@ else
 	fi
 
 	# shellcheck disable=SC2039
-	echo -n "Host Key: "
+	echo -n "00-make-certs.sh: Host Key: "
 	if [ ! -f "/etc/nginx/ssl/$CN.crt" ]; then
 		echo "generating"
 		openssl genrsa -out "/etc/nginx/ssl/$CN.key" 2048
@@ -47,7 +47,7 @@ else
 	fi
 
 	# shellcheck disable=SC2039
-	echo -n "Host Request: "
+	echo -n "00-make-certs.sh: Host Request: "
 	if [ ! -f "/etc/nginx/ssl/$CN.csr" ]; then
 		echo "generating"
 		openssl req -new -sha256 \
@@ -61,7 +61,7 @@ else
 	fi
 
 	# shellcheck disable=SC2039
-	echo -n "Host Certificate: "
+	echo -n "00-make-certs.sh: Host Certificate: "
 	if [ ! -f "/etc/nginx/ssl/$CN.crt" ]; then
 		echo "generating"
 		openssl x509 -req -sha256 \
