@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `DOCKER_BUILDKIT` as default
 - `.gitattributes` for line endings
 - Contribution guide
+- `Makefile` support
 
 ### Changed
 
