@@ -32,6 +32,7 @@ A Docker-based installer and runtime for website applications.
 * [Usage examples](docs/examples.md)
 * [Helpful commands](docs/commands.md)
 * [Troubleshooting](docs/troubleshooting.md)
+* Bonus: [Using a Makefile](docs/makefile.md)
 
 # Contributing
 
