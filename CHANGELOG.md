@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [1.1.0] - 2022-11-15
+
+### Added
+
 - Production: `docker-compose.prod.yml`
 - `ENV` variables for web server config
 - Nginx: SSL certificate generation for development.
@@ -29,8 +43,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation: Link the contribution guide
 - Prefix for `00-make-certs.sh` entrypoint for output
 
-### Deprecated
-
 ### Removed
 
 - Self-signed SSL certificates
@@ -45,8 +57,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Typo in `make-certs.sh` with `HOSTNAME`
 - Useless linebreak in `Dockerfile`
 - Mount folder for self-signed certificates only for development
-
-### Security
 
 ## [1.0.0] - 2022-10-27
 
