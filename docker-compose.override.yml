@@ -31,3 +31,21 @@ services:
       - type: bind
         source: ./app
         target: ${DOCUMENT_ROOT:-/srv/app}
+
+  adminer:
+    depends_on:
+      - db
+    image: adminer
+    restart: always
+    ports:
+      - 8080:${PORT_ADMINER:-8080}
+    profiles:
+      - db
+
+  mailer:
+    image: schickling/mailcatcher
+    restart: always
+    ports:
+      - 1080:${PORT_MAILER:-1080}
+    profiles:
+      - mail

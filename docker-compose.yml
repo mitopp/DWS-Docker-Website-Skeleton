@@ -50,7 +50,7 @@ services:
   php:
     build:
       args:
-        - PHP_VERSION=${VERSION_PHP:-8.1.11}
+        - PHP_VERSION=${VERSION_PHP:-8.1.12}
         - DOCUMENT_ROOT=${DOCUMENT_ROOT:-/srv/app}
       context: .
       dockerfile: ./docker/php/fpm/Dockerfile
@@ -72,6 +72,28 @@ services:
         target: /var/run/php
     working_dir: ${DOCUMENT_ROOT:-/srv/app}
 
+  db:
+    build:
+      args:
+        - MARIADB_VERSION=${VERSION_MARIADB:-10.9.4}
+      context: .
+      dockerfile: ./docker/db/mariadb/Dockerfile
+    container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-db
+    environment:
+      MARIADB_RANDOM_ROOT_PASSWORD: yes
+      MARIADB_USER: dbuser
+      MARIADB_PASSWORD: dbsecret
+    image: ${COMPOSE_CONTAINER_PREFIX:-dws}-mariadb:latest
+    networks:
+      - default
+    profiles:
+      - db
+    restart: always
+    volumes:
+      - type: volume
+        source: db_data
+        target: /var/lib/mysql
+
 networks:
 
   # The standard network can be configured by ENV variables.
@@ -86,3 +108,5 @@ volumes:
 
   # This volume is used to connect vpn web server and PHP-FPM via socket.
   php_socket:
+
+  db_data:
