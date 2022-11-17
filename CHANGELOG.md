@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Web: Rename host templates for better understanding
 - Db: Use variables for `MARIADB_*` environments
 - Container names for `adminer` and `mailer`
+- Web: Rename ssl config file for better understanding
 
 ### Deprecated
 
