@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ignore `.env.*` files (sensitive data like credentials)
 - Web: Rename host templates for better understanding
 - Db: Use variables for `MARIADB_*` environments
+- Container names for `adminer` and `mailer`
 
 ### Deprecated
 
