@@ -10,6 +10,7 @@ started but if assigned, it is only started if the profile is activated.
 |--------------|---------------|------------------|
 | (unassigned) | web (nginx)   | all              |
 | (unassigned) | php (php-fpm) | all              |
+| cache        | cache (redis) | all              |
 | db           | db (mariadb)  | all              |
 | db           | adminer       | development only |
 | mail         | mailcatcher   | development only |

@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Adminer` service with profile `db`. (development only)
 - `Mailcatcher` service with service `mail`. (development only)
 - Documentation to profiles.
+- `Redis` service with profile `cache`.
 
 ### Changed
 
