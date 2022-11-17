@@ -23,6 +23,7 @@ help: all
 	$(info $(TAB)Options:)
 	$(info $(TAB)$(TAB)c=string$(TAB)$(TAB)Specify an alternate container. (default: "php"))
 	$(info $(TAB)$(TAB)e=string$(TAB)$(TAB)Specify an alternate environment. (default: "dev"))
+	$(info $(TAB)$(TAB)f=string$(TAB)$(TAB)Filter an service. (default: "all"))
 	$(info $(TAB)$(TAB)l=string$(TAB)$(TAB)Number of lines to show. (default: "10"))
 	$(info $(NL))
 	$(info $(TAB)Predefined commands:)
@@ -41,13 +42,14 @@ help: all
 	$(info $(TAB)$(TAB)exec/*$(TAB)$(TAB)$(TAB)Executes a command on the shell in a container.)
 	$(info $(NL))
 	$(info $(TAB)Variables: (for debugging purposes))
-	$(info $(TAB)$(TAB)Environment (e)$(TAB)$(TAB)$(e))
 	$(info $(TAB)$(TAB)Container (c)$(TAB)$(TAB)$(c))
+	$(info $(TAB)$(TAB)Environment (e)$(TAB)$(TAB)$(e))
+	$(info $(TAB)$(TAB)Filter (f)$(TAB)$(TAB)$(f))
 	$(info $(TAB)$(TAB)Length (l)$(TAB)$(TAB)$(l))
 	$(info $(NL))
 
 build: all
-	make compose/"build --pull --no-cache"
+	make compose/"build --pull --no-cache $(f)"
 
 down: all
 	make compose/"down --remove-orphans"
@@ -56,16 +58,16 @@ list: all
 	make compose/"ls"
 
 logs: all
-	make compose/"logs --tail $(l)"
+	make compose/"logs --tail $(l) $(f)"
 
 start: all
-	make compose/"start"
+	make compose/"start $(f)"
 
 stop: all
-	make compose/"stop"
+	make compose/"stop $(f)"
 
 up: all
-	make compose/"up --detach"
+	make compose/"up --detach $(f)"
 ###< general ###
 
 ###> abstract ###
@@ -73,7 +75,7 @@ docker/%: all
 	$(DOCKER) $*
 
 compose/%: all
-	$(COMPOSE) $(ARGS) $*
+	$(COMPOSE) $(ARGS) $* $(f)
 
 exec/%: all
 	make compose/"exec -it $(c) $*"
@@ -85,6 +87,7 @@ $(info Compile arguments...)
 
 $(eval c ?= php)
 $(eval e ?= dev)
+$(eval f ?= $(NULL))
 $(eval l ?= 10)
 
 # compose arguments
