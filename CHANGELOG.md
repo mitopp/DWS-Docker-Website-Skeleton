@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - PHP: Set default to latest stable version: `8.1.12` [Changelog](https://www.php.net/ChangeLog-8.php#8.1.12)
+- Ignore `.env.*` files (sensitive data like credentials)
 
 ### Deprecated
 
