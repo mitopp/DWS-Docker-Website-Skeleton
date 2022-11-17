@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PHP: Set default to latest stable version: `8.1.12` [Changelog](https://www.php.net/ChangeLog-8.php#8.1.12)
 - Ignore `.env.*` files (sensitive data like credentials)
 - Web: Rename host templates for better understanding
+- Db: Use variables for `MARIADB_*` environments
 
 ### Deprecated
 

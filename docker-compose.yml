@@ -81,8 +81,9 @@ services:
     container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-db
     environment:
       MARIADB_RANDOM_ROOT_PASSWORD: yes
-      MARIADB_USER: dbuser
-      MARIADB_PASSWORD: dbsecret
+      MARIADB_USER: ${MARIADB_USERNAME:-dbuser}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD:-dbsecret}
+      MARIADB_DATABASE: ${MARIADB_DATABASE:-dws}
     image: ${COMPOSE_CONTAINER_PREFIX:-dws}-mariadb:latest
     networks:
       - default
@@ -93,6 +94,21 @@ services:
       - type: volume
         source: db_data
         target: /var/lib/mysql
+
+  cache:
+    build:
+      args:
+        - REDIS_VERSION=${VERSION_REDIS:-7.0.5}
+      context: .
+      dockerfile: ./docker/cache/redis/Dockerfile
+    container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-cache
+    image: ${COMPOSE_CONTAINER_PREFIX:-dws}-redis:latest
+    networks:
+      - default
+    profiles:
+      - cache
+    restart: always
+
 
 networks:
 
