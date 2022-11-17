@@ -20,6 +20,16 @@ A Docker-based installer and runtime for website applications.
 * Syslog integration
 * Automatic HTTPS
 * Super-readable and flexible configuration
+* Native Xdebug integration (Development)
+* Preload support
+* Just 2 services:
+    * Webserver (Nginx)
+    * PHP (FPM)
+* Support for extra services:
+    * Database (MariaDB)
+    * Cache (Redis)
+    * Adminer (Development only)
+    * MailCatcher (Development only)
 
 # Requirements
 
