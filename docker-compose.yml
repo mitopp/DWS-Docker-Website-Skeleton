@@ -29,12 +29,9 @@ services:
       timeout: 10s
       retries: 3
       start_period: 20s
-    image: ${COMPOSE_CONTAINER_PREFIX:-dws}-nginx:latest
+    image: ${COMPOSE_CONTAINER_PREFIX:-dws}/nginx:latest
     networks:
       - default
-    ports:
-      - 80:${PORT_HTTP:-80}
-      - 443:${PORT_HTTPS:-443}
     # The policy restarts a container irrespective of the exit code but will stop restarting when the service is stopped or removed.
     restart: unless-stopped
     volumes:
@@ -61,7 +58,7 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
-    image: ${COMPOSE_CONTAINER_PREFIX:-dws}-php:latest
+    image: ${COMPOSE_CONTAINER_PREFIX:-dws}/php:latest
     networks:
       - default
     # The policy restarts a container irrespective of the exit code but will stop restarting when the service is stopped or removed.
@@ -84,7 +81,7 @@ services:
       MARIADB_USER: ${MARIADB_USERNAME:-dbuser}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD:-dbsecret}
       MARIADB_DATABASE: ${MARIADB_DATABASE:-dws}
-    image: ${COMPOSE_CONTAINER_PREFIX:-dws}-mariadb:latest
+    image: ${COMPOSE_CONTAINER_PREFIX:-dws}/mariadb:latest
     networks:
       - default
     profiles:
@@ -102,7 +99,7 @@ services:
       context: .
       dockerfile: ./docker/cache/redis/Dockerfile
     container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-cache
-    image: ${COMPOSE_CONTAINER_PREFIX:-dws}-redis:latest
+    image: ${COMPOSE_CONTAINER_PREFIX:-dws}/redis:latest
     networks:
       - default
     profiles:

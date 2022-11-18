@@ -7,7 +7,10 @@ services:
   web:
     build:
       target: dev
-    image: ${COMPOSE_CONTAINER_PREFIX:-dws}-nginx:dev-master
+    image: ${COMPOSE_CONTAINER_PREFIX:-dws}/nginx:dev-master
+    ports:
+      - 80:${PORT_HTTP:-80}
+      - 443:${PORT_HTTPS:-443}
     volumes:
       # Mount a folder for self-signed certificates only for development
       - type: bind
@@ -25,7 +28,7 @@ services:
     extra_hosts:
       # Ensure that host.docker.internal is correctly defined on Linux
       - host.docker.internal:host-gateway
-    image: ${COMPOSE_CONTAINER_PREFIX:-dws}-php:dev-master
+    image: ${COMPOSE_CONTAINER_PREFIX:-dws}/php:dev-master
     volumes:
       # The application files are mounted as a share in the container.
       - type: bind
