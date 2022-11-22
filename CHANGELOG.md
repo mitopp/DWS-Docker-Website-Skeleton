@@ -9,7 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `MariaDB` service with profile `db`.
+- `Adminer` service with profile `db`. (development only)
+- `Mailcatcher` service with service `mail`. (development only)
+- Documentation to profiles.
+- `Redis` service with profile `cache`.
+- Make: Targets for `debug` and `info`.
+
 ### Changed
+
+- PHP: Set default to latest stable version: `8.1.12` [Changelog](https://www.php.net/ChangeLog-8.php#8.1.12)
+- Ignore `.env.*` files (sensitive data like credentials)
+- Web: Rename host templates for better understanding
+- Db: Use variables for `MARIADB_*` environments
+- Container names for `adminer` and `mailer`
+- Web: Rename ssl config file for better understanding
+- Make: Add option for filter a container
+- Documentation: for `redis.conf` and `docker.cnf`
+- Docker: Image names
 
 ### Deprecated
 
