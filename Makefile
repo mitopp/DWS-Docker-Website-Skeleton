@@ -13,7 +13,7 @@ else
 endif
 
 # targets
-.PHONY: help build down list logs start stop up
+.PHONY: help build debug down info list logs start stop up
 
 ###> general ###
 help: all
@@ -28,8 +28,10 @@ help: all
 	$(info $(NL))
 	$(info $(TAB)Predefined commands:)
 	$(info $(TAB)$(TAB)build$(TAB)$(TAB)$(TAB)Build services. (no cache))
+	$(info $(TAB)$(TAB)debug$(TAB)$(TAB)$(TAB)Debugging configuration.)
 	$(info $(TAB)$(TAB)down$(TAB)$(TAB)$(TAB)Stop and remove containers, networks, etc.)
 	$(info $(TAB)$(TAB)help$(TAB)$(TAB)$(TAB)Outputs this help screen.)
+	$(info $(TAB)$(TAB)info$(TAB)$(TAB)$(TAB)Version informations.)
 	$(info $(TAB)$(TAB)list$(TAB)$(TAB)$(TAB)List running compose projects.)
 	$(info $(TAB)$(TAB)logs$(TAB)$(TAB)$(TAB)View output from containers.)
 	$(info $(TAB)$(TAB)start$(TAB)$(TAB)$(TAB)Start all services.)
@@ -51,8 +53,16 @@ help: all
 build: all
 	make compose/"build --pull --no-cache $(f)"
 
+debug: all
+	@echo Configuration...
+	@echo $(TAB)$(COMPOSE) $(ARGS)
+
 down: all
 	make compose/"down --remove-orphans"
+
+info: all
+	@echo $(shell $(DOCKER) --version)
+	@echo $(shell $(COMPOSE) version)
 
 list: all
 	make compose/"ls"
@@ -97,10 +107,18 @@ ifneq ($(e), dev)
 else
 	ARGS += --file docker-compose.override.yml
 endif
+
 ifneq ("$(wildcard .env)", "")
 	ARGS += --env-file .env
+else
+$(info $(TAB)No `.env` file found. (Use defaults))
 endif
-ifneq ("$(wildcard .env.$(e))", "")
-	ARGS += --env-file .env.$(e)
+
+ifneq ($(e), dev)
+	ifneq ("$(wildcard .env.$(e))", "")
+		ARGS += --env-file .env.$(e)
+	else
+	$(info $(TAB)No `.env.$e` file found. (No overrides))
+	endif
 endif
 ###< helper ###

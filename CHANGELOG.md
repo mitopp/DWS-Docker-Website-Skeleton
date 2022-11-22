@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Mailcatcher` service with service `mail`. (development only)
 - Documentation to profiles.
 - `Redis` service with profile `cache`.
+- Make: Targets for `debug` and `info`.
 
 ### Changed
 
