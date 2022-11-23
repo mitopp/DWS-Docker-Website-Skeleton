@@ -85,7 +85,7 @@ docker/%: all
 	$(DOCKER) $*
 
 compose/%: all
-	$(COMPOSE) $(ARGS) $* $(f)
+	$(COMPOSE) $(ARGS) $*
 
 exec/%: all
 	make compose/"exec -it $(c) $*"
