@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Make: Add option for filter a container
 - Documentation: for `redis.conf` and `docker.cnf`
 - Docker: Image names
+- Documentation in `.env.dist` and `docker/php/fpm/bin/docker-entrypoint.sh`
 
 ### Deprecated
 
