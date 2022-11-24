@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation: for `redis.conf` and `docker.cnf`
 - Docker: Image names
 - Documentation in `.env.dist` and `docker/php/fpm/bin/docker-entrypoint.sh`
+- PHP: Install vendor packages in `docker-entrypoint` not by default
 
 ### Deprecated
 
