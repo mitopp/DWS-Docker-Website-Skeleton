@@ -17,8 +17,7 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 	#fi
 
 	# Correct file/directory permissions
-	setfacl -R -m u:www-data:rwX -m u:"$(whoami)":rwX /srv/app
-    setfacl -dR -m u:www-data:rwX -m u:"$(whoami)":rwX /srv/app
+    chown -R www-data:www-data .
 fi
 
 exec docker-php-entrypoint "$@"
