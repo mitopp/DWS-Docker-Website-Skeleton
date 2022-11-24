@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Docker: Image names
 - Documentation in `.env.dist` and `docker/php/fpm/bin/docker-entrypoint.sh`
 - PHP: Install vendor packages in `docker-entrypoint` not by default
+- PHP: `opcache.preload` on demand
 
 ### Deprecated
 
