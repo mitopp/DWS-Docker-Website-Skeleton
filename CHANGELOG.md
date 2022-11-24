@@ -38,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Make: Remove double argument for filter
+- Make: Remove output in `all` target
 
 ### Security
 

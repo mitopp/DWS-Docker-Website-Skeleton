@@ -93,8 +93,6 @@ exec/%: all
 
 ###> helper ###
 all:
-$(info Compile arguments...)
-
 $(eval c ?= php)
 $(eval e ?= dev)
 $(eval f ?= $(NULL))
@@ -110,15 +108,11 @@ endif
 
 ifneq ("$(wildcard .env)", "")
 	ARGS += --env-file .env
-else
-$(info $(TAB)No `.env` file found. (Use defaults))
 endif
 
 ifneq ($(e), dev)
 	ifneq ("$(wildcard .env.$(e))", "")
 		ARGS += --env-file .env.$(e)
-	else
-	$(info $(TAB)No `.env.$e` file found. (No overrides))
 	endif
 endif
 ###< helper ###
