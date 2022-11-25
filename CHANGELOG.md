@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PHP: Install vendor packages in `docker-entrypoint` not by default
 - PHP: `opcache.preload` on demand
 - PHP: Change directory owner in `docker-entrypoint`
+- Make: Add target for container stats
 
 ### Deprecated
 

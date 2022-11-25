@@ -13,7 +13,7 @@ else
 endif
 
 # targets
-.PHONY: help build debug down info list logs start stop up
+.PHONY: help build debug down info list logs start stats stop up
 
 ###> general ###
 help: all
@@ -35,6 +35,7 @@ help: all
 	$(info $(TAB)$(TAB)list$(TAB)$(TAB)$(TAB)List running compose projects.)
 	$(info $(TAB)$(TAB)logs$(TAB)$(TAB)$(TAB)View output from containers.)
 	$(info $(TAB)$(TAB)start$(TAB)$(TAB)$(TAB)Start all services.)
+	$(info $(TAB)$(TAB)stats$(TAB)$(TAB)$(TAB)Status of all services.)
 	$(info $(TAB)$(TAB)stop$(TAB)$(TAB)$(TAB)Stop all services.)
 	$(info $(TAB)$(TAB)up$(TAB)$(TAB)$(TAB)Create and start containers. (detached))
 	$(info $(NL))
@@ -72,6 +73,9 @@ logs: all
 
 start: all
 	make compose/"start $(f)"
+
+stats: all
+	make docker/"stats --format 'table {{.ID}}\t{{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.MemPerc}}\t{{.NetIO}}\t{{.BlockIO}}\t{{.PIDs}}'"
 
 stop: all
 	make compose/"stop $(f)"
