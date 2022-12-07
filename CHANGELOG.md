@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation to profiles.
 - `Redis` service with profile `cache`.
 - Make: Targets for `debug` and `info`.
+- PHP: `docker-entrypoint`
 
 ### Changed
 
@@ -27,12 +28,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Make: Add option for filter a container
 - Documentation: for `redis.conf` and `docker.cnf`
 - Docker: Image names
+- Documentation in `.env.dist` and `docker/php/fpm/bin/docker-entrypoint.sh`
+- PHP: Install vendor packages in `docker-entrypoint` not by default
+- PHP: `opcache.preload` on demand
+- PHP: Change directory owner in `docker-entrypoint`
+- Make: Add target for container stats
+- PHP: Upgrade to v8.1.13
+- Web: Upgrade to v1.23.2
 
 ### Deprecated
 
 ### Removed
 
+- Unused regex for `.env.dist` in `.dockerignore`
+
 ### Fixed
+
+- Make: Remove double argument for filter
+- Make: Remove output in `all` target
 
 ### Security
 

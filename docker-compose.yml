@@ -12,7 +12,7 @@ services:
   web:
     build:
       args:
-        - NGINX_VERSION=${VERSION_NGINX:-1.23.1}
+        - NGINX_VERSION=${VERSION_NGINX:-1.23.2}
       context: .
       dockerfile: ./docker/web/nginx/Dockerfile
     container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-nginx
@@ -47,7 +47,7 @@ services:
   php:
     build:
       args:
-        - PHP_VERSION=${VERSION_PHP:-8.1.12}
+        - PHP_VERSION=${VERSION_PHP:-8.1.13}
         - DOCUMENT_ROOT=${DOCUMENT_ROOT:-/srv/app}
       context: .
       dockerfile: ./docker/php/fpm/Dockerfile
