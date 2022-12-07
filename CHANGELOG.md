@@ -40,6 +40,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Unused regex for `.env.dist` in `.dockerignore`
+
 ### Fixed
 
 - Make: Remove double argument for filter
