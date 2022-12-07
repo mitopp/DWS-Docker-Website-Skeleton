@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PHP: Change directory owner in `docker-entrypoint`
 - Make: Add target for container stats
 - PHP: Upgrade to v8.1.13
+- Web: Upgrade to v1.23.2
 
 ### Deprecated
 
