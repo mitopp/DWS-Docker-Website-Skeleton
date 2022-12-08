@@ -35,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Make: Add target for container stats
 - PHP: Upgrade to v8.1.13
 - Web: Upgrade to v1.23.2
+- Move `opcache` setting to general `php.ini`
 
 ### Deprecated
 
