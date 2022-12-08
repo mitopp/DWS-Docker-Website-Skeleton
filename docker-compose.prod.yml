@@ -8,7 +8,9 @@ services:
     build:
       target: prod
     ports:
-      - 80:${PORT_HTTP:-80}
+      - target: 80
+        published: ${PORT_HTTP:-80}
+        protocol: tcp
 
   php:
     build:

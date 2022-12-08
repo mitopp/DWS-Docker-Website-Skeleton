@@ -48,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Make: Remove double argument for filter
 - Make: Remove output in `all` target
 - ENV: Add variable for `PORT_MAILER`
+- Compose: Target and published ports
 
 ### Security
 
