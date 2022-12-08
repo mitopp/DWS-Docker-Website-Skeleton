@@ -36,7 +36,7 @@ services:
         target: ${DOCUMENT_ROOT:-/srv/app}
       # If you develop on Mac or Windows you can remove the vendor/ directory
       # from the bind-mount for better performance
-      - ${DOCUMENT_ROOT:-/srv/app}/vendor
+      - /srv/app/vendor
 
 
   adminer:
