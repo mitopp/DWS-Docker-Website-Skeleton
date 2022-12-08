@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Redis` service with profile `cache`.
 - Make: Targets for `debug` and `info`.
 - PHP: `docker-entrypoint`
+- Docs: Create an example for Symfony based applications
 
 ### Changed
 
