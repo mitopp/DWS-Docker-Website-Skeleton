@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Redis` service with profile `cache`.
 - Make: Targets for `debug` and `info`.
 - PHP: `docker-entrypoint`
+- Docs: Create an example for Symfony based applications
 
 ### Changed
 
@@ -35,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Make: Add target for container stats
 - PHP: Upgrade to v8.1.13
 - Web: Upgrade to v1.23.2
+- Move `opcache` setting to general `php.ini`
 
 ### Deprecated
 
@@ -47,6 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Make: Remove double argument for filter
 - Make: Remove output in `all` target
 - ENV: Add variable for `PORT_MAILER`
+- Compose: Target and published ports
 
 ### Security
 
