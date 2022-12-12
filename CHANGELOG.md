@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Make: Targets for `debug` and `info`.
 - PHP: `docker-entrypoint`
 - Docs: Create an example for Symfony based applications
+- PHP: Scripts for `create`, `install` and `configure` the Symfony framework
 
 ### Changed
 
