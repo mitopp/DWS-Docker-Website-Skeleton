@@ -47,6 +47,10 @@ ARG DOCUMENT_ROOT="/srv/app"
 # copy sources
 COPY app/ ${DOCUMENT_ROOT}
 
+# helpful scripts
+COPY docker/php/fpm/bin/symfony /usr/local/bin/symfony
+RUN chmod -R +x /usr/local/bin/symfony/*
+
 # entry point
 COPY docker/php/fpm/bin/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
