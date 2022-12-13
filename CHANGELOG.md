@@ -39,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Web: Upgrade to v1.23.2
 - Move `opcache` setting to general `php.ini`
 - PHP: Copy Symfony scripts in the container
+- Healthcheck: Tweak options
 
 ### Deprecated
 
