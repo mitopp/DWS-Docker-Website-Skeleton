@@ -8,6 +8,7 @@ set -e
 echo "Install packages..."
 if [ "${1:-"dev"}" = 'dev' ]; then
 	composer install --prefer-dist --no-progress --no-interaction;
+	composer require --dev symfony/profiler-pack symfony/test-pack --prefer-dist --no-interaction
 else
 	composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress;
 	composer dump-autoload --classmap-authoritative --no-dev;
