@@ -31,7 +31,7 @@ else
 		openssl req \
 			-x509 -new -nodes \
 			-key "/etc/nginx/ssl/rootCA.key" \
-			-sha256 -days 1024 -config <(cat "/etc/ssl/dev.cnf") \
+			-sha256 -days 1024 -config <(cat "/etc/ssl/localhost.cnf") \
 			-out "/etc/nginx/ssl/rootCA.crt"
 	else
 		echo "already exists"
@@ -52,9 +52,9 @@ else
 		echo "generating"
 		openssl req -new -sha256 \
 			-key "/etc/nginx/ssl/$CN.key" \
-			-config "/etc/ssl/dev.cnf" \
+			-config "/etc/ssl/localhost.cnf" \
 			-subj "/CN=$CN" \
-			-config <(cat "/etc/ssl/dev.cnf") \
+			-config <(cat "/etc/ssl/localhost.cnf") \
 			-out "/etc/nginx/ssl/$CN.csr"
 	else
 		echo "already exists"
