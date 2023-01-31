@@ -46,7 +46,6 @@ services:
   adminer:
     depends_on:
       - db
-    container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-adminer
     image: adminer
     restart: always
     ports:
@@ -57,7 +56,6 @@ services:
       - db
 
   mailer:
-    container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-mailer
     image: schickling/mailcatcher
     restart: always
     ports:

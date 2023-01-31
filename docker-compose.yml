@@ -15,7 +15,6 @@ services:
         - NGINX_VERSION=${VERSION_NGINX:-1.23.3}
       context: .
       dockerfile: ./docker/web/nginx/Dockerfile
-    container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-nginx
     depends_on:
       php:
         condition: service_healthy
@@ -51,7 +50,6 @@ services:
         - DOCUMENT_ROOT=${DOCUMENT_ROOT:-/srv/app}
       context: .
       dockerfile: ./docker/php/fpm/Dockerfile
-    container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-php
     healthcheck:
       test: [ "CMD-SHELL", "env -i REQUEST_METHOD=GET SCRIPT_NAME=/ping SCRIPT_FILENAME=/ping cgi-fcgi -bind -connect /var/run/php/php-fpm.sock || exit 1" ]
       interval: 20s
@@ -75,7 +73,6 @@ services:
         - MARIADB_VERSION=${VERSION_MARIADB:-10.9.4}
       context: .
       dockerfile: ./docker/db/mariadb/Dockerfile
-    container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-db
     environment:
       MARIADB_RANDOM_ROOT_PASSWORD: yes
       MARIADB_USER: ${MARIADB_USERNAME:-dbuser}
@@ -98,7 +95,6 @@ services:
         - REDIS_VERSION=${VERSION_REDIS:-7.0.5}
       context: .
       dockerfile: ./docker/cache/redis/Dockerfile
-    container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-cache
     image: ${COMPOSE_CONTAINER_PREFIX:-dws}/redis:latest
     networks:
       - default
