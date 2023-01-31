@@ -54,6 +54,7 @@ else
 			-key "/etc/nginx/ssl/$CN.key" \
 			-config "/etc/ssl/localhost.cnf" \
 			-subj "/CN=$CN" \
+			# shellcheck disable=SC2039
 			-config <(cat "/etc/ssl/localhost.cnf") \
 			-out "/etc/nginx/ssl/$CN.csr"
 	else

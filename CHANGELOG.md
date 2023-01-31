@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PHP: `docker-entrypoint`
 - Docs: Create an example for Symfony based applications
 - PHP: Scripts for `create`, `install` and `configure` the Symfony framework
+- Docker: Change context for `db`, `mail`, `web`
+- PHP: Install `symfony/maker-bundle` for Symfony
+- Docker: Optimize healthcheck params
 
 ### Changed
 
@@ -49,6 +52,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Unused regex for `.env.dist` in `.dockerignore`
 - Remove `opcache.preload` from `php.ini`
+- Docker: Remove static container names for swarm mode
+- Docker: Remove versions for build and set static in `Dockerfile`
 
 ### Fixed
 

@@ -5,11 +5,11 @@ NL :=
 
 # executables
 ifeq ($(OS),Windows_NT)
-	DOCKER 	= docker
-	COMPOSE = docker compose
+	DOCKER  = $(shell where docker.exe)
+	COMPOSE = $(shell where docker-compose.exe)
 else
 	DOCKER 	= $(shell which docker)
-	COMPOSE = $(shell which docker compose)
+	COMPOSE = $(shell which docker-compose)
 endif
 
 # targets

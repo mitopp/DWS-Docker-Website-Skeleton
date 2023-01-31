@@ -12,7 +12,7 @@ FROM nginx:${NGINX_VERSION}-alpine AS builder
 FROM builder AS prod
 
 # vhost
-COPY docker/web/nginx/templates/production.conf.template /etc/nginx/templates/default.conf.template
+COPY templates/production.conf.template /etc/nginx/templates/default.conf.template
 
 ########################################################################################################################
 # Development image
@@ -23,11 +23,11 @@ RUN apk add --no-cache --update \
     openssl
 
 # Generate self-signed SSL certificates
-COPY docker/web/nginx/conf/localhost.cnf /etc/ssl/localhost.cnf
-COPY docker/web/nginx/bin/make-certs.sh /docker-entrypoint.d/00-make-certs.sh
+COPY conf/localhost.cnf /etc/ssl/localhost.cnf
+COPY bin/make-certs.sh /docker-entrypoint.d/00-make-certs.sh
 
 # vhost
-COPY docker/web/nginx/templates/development.conf.template /etc/nginx/templates/default.conf.template
+COPY templates/development.conf.template /etc/nginx/templates/default.conf.template
 
 RUN chmod +x /docker-entrypoint.d/00-make-certs.sh
 RUN mkdir /etc/nginx/ssl && touch /etc/nginx/ssl/.nomount

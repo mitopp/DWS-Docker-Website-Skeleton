@@ -11,11 +11,7 @@ services:
   # The naming of the container is done with appropriate prefix.
   web:
     build:
-      args:
-        - NGINX_VERSION=${VERSION_NGINX:-1.23.3}
-      context: .
-      dockerfile: ./docker/web/nginx/Dockerfile
-    container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-nginx
+      context: ./docker/web/nginx
     depends_on:
       php:
         condition: service_healthy
@@ -25,8 +21,8 @@ services:
       - HOSTNAME=${HOSTNAME:-localhost}
     healthcheck:
       test: [ "CMD-SHELL", "curl --fail http://localhost || exit 1" ]
-      interval: 50s
-      timeout: 30s
+      interval: 10s
+      timeout: 3s
       retries: 3
       start_period: 0s
     image: ${COMPOSE_CONTAINER_PREFIX:-dws}/nginx:latest
@@ -47,15 +43,13 @@ services:
   php:
     build:
       args:
-        - PHP_VERSION=${VERSION_PHP:-8.1.13}
         - DOCUMENT_ROOT=${DOCUMENT_ROOT:-/srv/app}
       context: .
       dockerfile: ./docker/php/fpm/Dockerfile
-    container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-php
     healthcheck:
       test: [ "CMD-SHELL", "env -i REQUEST_METHOD=GET SCRIPT_NAME=/ping SCRIPT_FILENAME=/ping cgi-fcgi -bind -connect /var/run/php/php-fpm.sock || exit 1" ]
-      interval: 20s
-      timeout: 10s
+      interval: 10s
+      timeout: 3s
       retries: 3
       start_period: 0s
     image: ${COMPOSE_CONTAINER_PREFIX:-dws}/php:latest
@@ -71,11 +65,7 @@ services:
 
   db:
     build:
-      args:
-        - MARIADB_VERSION=${VERSION_MARIADB:-10.9.4}
-      context: .
-      dockerfile: ./docker/db/mariadb/Dockerfile
-    container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-db
+      context: ./docker/db/mariadb
     environment:
       MARIADB_RANDOM_ROOT_PASSWORD: yes
       MARIADB_USER: ${MARIADB_USERNAME:-dbuser}
@@ -94,11 +84,7 @@ services:
 
   cache:
     build:
-      args:
-        - REDIS_VERSION=${VERSION_REDIS:-7.0.5}
-      context: .
-      dockerfile: ./docker/cache/redis/Dockerfile
-    container_name: ${COMPOSE_CONTAINER_PREFIX:-dws}-cache
+      context: ./docker/cache/redis
     image: ${COMPOSE_CONTAINER_PREFIX:-dws}/redis:latest
     networks:
       - default
