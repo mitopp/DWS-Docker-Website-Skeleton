@@ -11,8 +11,6 @@ services:
   # The naming of the container is done with appropriate prefix.
   web:
     build:
-      args:
-        - NGINX_VERSION=${VERSION_NGINX:-1.23.3}
       context: .
       dockerfile: ./docker/web/nginx/Dockerfile
     depends_on:
@@ -46,7 +44,6 @@ services:
   php:
     build:
       args:
-        - PHP_VERSION=${VERSION_PHP:-8.1.13}
         - DOCUMENT_ROOT=${DOCUMENT_ROOT:-/srv/app}
       context: .
       dockerfile: ./docker/php/fpm/Dockerfile
@@ -69,8 +66,6 @@ services:
 
   db:
     build:
-      args:
-        - MARIADB_VERSION=${VERSION_MARIADB:-10.9.4}
       context: .
       dockerfile: ./docker/db/mariadb/Dockerfile
     environment:
@@ -91,8 +86,6 @@ services:
 
   cache:
     build:
-      args:
-        - REDIS_VERSION=${VERSION_REDIS:-7.0.5}
       context: .
       dockerfile: ./docker/cache/redis/Dockerfile
     image: ${COMPOSE_CONTAINER_PREFIX:-dws}/redis:latest
