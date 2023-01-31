@@ -21,8 +21,8 @@ services:
       - HOSTNAME=${HOSTNAME:-localhost}
     healthcheck:
       test: [ "CMD-SHELL", "curl --fail http://localhost || exit 1" ]
-      interval: 50s
-      timeout: 30s
+      interval: 10s
+      timeout: 3s
       retries: 3
       start_period: 0s
     image: ${COMPOSE_CONTAINER_PREFIX:-dws}/nginx:latest
@@ -48,8 +48,8 @@ services:
       dockerfile: ./docker/php/fpm/Dockerfile
     healthcheck:
       test: [ "CMD-SHELL", "env -i REQUEST_METHOD=GET SCRIPT_NAME=/ping SCRIPT_FILENAME=/ping cgi-fcgi -bind -connect /var/run/php/php-fpm.sock || exit 1" ]
-      interval: 20s
-      timeout: 10s
+      interval: 10s
+      timeout: 3s
       retries: 3
       start_period: 0s
     image: ${COMPOSE_CONTAINER_PREFIX:-dws}/php:latest
