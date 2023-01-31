@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Docs: Create an example for Symfony based applications
 - PHP: Scripts for `create`, `install` and `configure` the Symfony framework
 - Docker: Change context for `db`, `mail`, `web`
+- PHP: Install `symfony/maker-bundle` for Symfony
 
 ### Changed
 
