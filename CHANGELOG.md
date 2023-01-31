@@ -62,6 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ENV: Add variable for `PORT_MAILER`
 - Compose: Target and published ports
 - Web: Typo in ssl config for development
+- Web: Comment in command
 
 ### Security
 
