@@ -6,6 +6,6 @@ ARG REDIS_VERSION=7.0.5
 # https://docs.docker.com/compose/compose-file/#target
 FROM redis:${REDIS_VERSION}-alpine
 
-COPY docker/cache/redis/conf/redis.conf /usr/local/etc/redis/redis.conf
+COPY conf/redis.conf /usr/local/etc/redis/redis.conf
 
 CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]

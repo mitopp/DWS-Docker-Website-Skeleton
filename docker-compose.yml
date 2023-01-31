@@ -11,8 +11,7 @@ services:
   # The naming of the container is done with appropriate prefix.
   web:
     build:
-      context: .
-      dockerfile: ./docker/web/nginx/Dockerfile
+      context: ./docker/web/nginx
     depends_on:
       php:
         condition: service_healthy
@@ -66,8 +65,7 @@ services:
 
   db:
     build:
-      context: .
-      dockerfile: ./docker/db/mariadb/Dockerfile
+      context: ./docker/db/mariadb
     environment:
       MARIADB_RANDOM_ROOT_PASSWORD: yes
       MARIADB_USER: ${MARIADB_USERNAME:-dbuser}
@@ -86,8 +84,7 @@ services:
 
   cache:
     build:
-      context: .
-      dockerfile: ./docker/cache/redis/Dockerfile
+      context: ./docker/cache/redis
     image: ${COMPOSE_CONTAINER_PREFIX:-dws}/redis:latest
     networks:
       - default

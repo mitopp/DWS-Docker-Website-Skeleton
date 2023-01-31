@@ -7,4 +7,4 @@ ARG MARIADB_VERSION=10.9.4
 FROM mariadb:${MARIADB_VERSION} AS builder
 
 # configuration
-COPY docker/db/mariadb/conf.d /etc/mysql/conf.d
+COPY conf.d /etc/mysql/conf.d
