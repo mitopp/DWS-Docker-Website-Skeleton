@@ -5,11 +5,11 @@ prompt = no
 
 [req_distinguished_name]
 countryName = DE
-stateOrProvinceName = Berlin
-localityName = Berlin
-organizationName = Capita Customer Services GmbH
+stateOrProvinceName = Brunswick
+localityName = Brunswick
+organizationName = ACME Inc.
 organizationalUnitName = IT-Dev DWS
-emailAddress = it.development@capita-europe.com
+emailAddress = it.development@acme.com
 
 [v3_req]
 subjectKeyIdentifier = hash
